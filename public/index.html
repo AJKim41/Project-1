@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Welcome to Firebase Hosting</title>
-
+  <link rel="stylesheet" href="./assets/css/style.css">
   <!-- update the version number as needed -->
   <script defer src="/__/firebase/5.10.1/firebase-app.js"></script>
   <!-- include only the Firebase features as you need -->
@@ -19,15 +19,105 @@
 </head>
 
 <body>
-  <div class="donate">
-    <p>Donate to Autism Speaks</p>
-    <div class="donate-link"><a
-        href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">Donate</a>
+  <div class="top">
+
+    <div class="menu">
+      <ul>
+        <li>Faces</li>
+        <li>Meainings</li>
+        <li>Help</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mid">
+    <div class="input">
+      <textarea name="wts-input" id="user-input" cols="38" rows="10"></textarea>
+      <button id="analyze-btn">What'd they mean?</button>
+    </div>
+
+    <div class="face">
+
+    </div>
+    <div class="return-info">
+      <table>
+        <tr>
+          <td>Nice/Mean</td>
+        </tr>
+        <tr>
+          <td>Definitions</td>
+        </tr>
+      </table>
+      <div class="giphy">
+        <div class="slider">
+          <div id="gif-holder" class="gif-info">
+            <img src="./assets/images/autismspeakslogo.jpg" alt="Autism Speaks Logo">
+            <p>GIF Name</p>
+          </div>
+          <div id="gif-holder" class="gif-info">
+            <img src="./assets/images/autismspeakslogo.jpg" alt="Autism Speaks Logo">
+            <p>GIF Name</p>
+          </div>
+          <div id="gif-holder" class="gif-info">
+            <img src="./assets/images/autismspeakslogo.jpg" alt="Autism Speaks Logo">
+            <p>GIF Name</p>
+          </div>
+          <div id="gif-holder" class="gif-info">
+            <img src="./assets/images/autismspeakslogo.jpg" alt="Autism Speaks Logo">
+            <p>GIF Name</p>
+          </div>
+          <div class="gif-info">
+            <img src="./assets/images/autismspeakslogo.jpg" alt="Autism Speaks Logo">
+            <p>GIF Name</p>
+          </div>
+          <div class="gif-info">
+            <img src="./assets/images/autismspeakslogo.jpg" alt="Autism Speaks Logo">
+            <p>GIF Name</p>
+          </div>
+          <div class="gif-info">
+            <img src="./assets/images/autismspeakslogo.jpg" alt="Autism Speaks Logo">
+            <p>GIF Name</p>
+          </div>
+          <div class="gif-info">
+            <img src="./assets/images/autismspeakslogo.jpg" alt="Autism Speaks Logo">
+            <p>GIF Name</p>
+          </div>
+          <div class="gif-info">
+            <img src="./assets/images/autismspeakslogo.jpg" alt="Autism Speaks Logo">
+            <p>GIF Name</p>
+          </div>
+          <div class="gif-info">
+            <img src="./assets/images/autismspeakslogo.jpg" alt="Autism Speaks Logo">
+            <p>GIF Name</p>
+          </div>
+          <div class="gif-info">
+            <img src="./assets/images/autismspeakslogo.jpg" alt="Autism Speaks Logo">
+            <p>GIF Name</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bot">
+    <div class="donate">
+      <h3>Autism Speaks</h3>
+      <div class="donate-link"><a
+          href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">Donate</a>
+      </div>
+    </div>
+  </div>
+  <div id="respond-overlay" class="hide">
+    <div class="reply">
+      <button>Text</button>
+      <button>Email</button>
+      <button>Facebook</button>
+      <button>Slack</button>
+      <button>Copy</button>
     </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+
       // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
       // // The Firebase SDK is initialized and available here!
       //
@@ -41,12 +131,24 @@
       try {
         let app = firebase.app();
         let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-        document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        //document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
       } catch (e) {
         console.error(e);
-        document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        //document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
       }
+
+      function overlayShow() {
+        document.getElementById("respond-overlay").className += "show";
+      }
+
+      var el = document.querySelector(".giphy");
+      el.addEventListener("click", function () {
+        overlayShow();
+      });
     });
+  </script>
+  <script>
+
   </script>
 </body>
 
