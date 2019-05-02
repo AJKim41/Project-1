@@ -1,53 +1,90 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome to Firebase Hosting</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome to Firebase Hosting</title>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.10.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.10.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.10.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.10.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.10.1/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
 
-  <!-- update the version number as needed -->
-  <script defer src="/__/firebase/5.10.1/firebase-app.js"></script>
-  <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/5.10.1/firebase-auth.js"></script>
-  <script defer src="/__/firebase/5.10.1/firebase-database.js"></script>
-  <script defer src="/__/firebase/5.10.1/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/5.10.1/firebase-storage.js"></script>
-  <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
-
-</head>
-
-<body>
-  <div class="donate">
-    <p>Donate to Autism Speaks</p>
-    <div class="donate-link"><a
-        href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">Donate</a>
+  <body>
+    <div class="donate">
+      <p>Donate to Autism Speaks</p>
+      <div class="donate-link">
+        <a
+          href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]"
+          >Donate</a
+        >
+      </div>
     </div>
-  </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-      // // The Firebase SDK is initialized and available here!
-      //
-      // firebase.auth().onAuthStateChanged(user => { });
-      // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-      // firebase.messaging().requestPermission().then(() => { });
-      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-      //
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    <script>
+      $(function() {
+        var params = {
+          // Request parameters
+          showStats: "true"
+        };
 
-      try {
-        let app = firebase.app();
-        let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-        document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-      } catch (e) {
-        console.error(e);
-        document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-      }
-    });
-  </script>
-</body>
+        $.ajax({
+          url:
+            "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/languages?" +
+            $.param(params),
+          beforeSend: function(xhrObj) {
+            // Request headers
+            xhrObj.setRequestHeader("Content-Type", "application/json");
+            xhrObj.setRequestHeader(
+              "Ocp-Apim-Subscription-Key",
+              "3364c9dcb16e43e4968abb2e69a607d3"
+            );
+          },
+          type: "POST",
+          // Request body
+          data:
+            '{ "documents": [ { "id": "1", "text": "Hello world" }, { "id": "2", "text": "Bonjour tout le monde" }, { "id": "3", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer." }, { "id": "4", "text": ":) :( :D" } ] }'
+        })
+          .done(function(data) {
+            alert("success");
+          })
+          .fail(function() {
+            alert("error");
+          });
+      });
 
+      document.addEventListener("DOMContentLoaded", function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ["auth", "database", "messaging", "storage"].filter(
+            feature => typeof app[feature] === "function"
+          );
+          document.getElementById(
+            "load"
+          ).innerHTML = `Firebase SDK loaded with ${features.join(", ")}`;
+        } catch (e) {
+          console.error(e);
+          document.getElementById("load").innerHTML =
+            "Error loading the Firebase SDK, check the console.";
+        }
+      });
+    </script>
+  </body>
 </html>
