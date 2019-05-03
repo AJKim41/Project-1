@@ -91,40 +91,6 @@
         showStats: "true"
       };
 
-      $.ajax({
-        url:
-          "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment?" +
-          $.param(params),
-        beforeSend: function (xhrObj) {
-          // Request headers
-          xhrObj.setRequestHeader("Content-Type", "application/json");
-          xhrObj.setRequestHeader(
-            "Ocp-Apim-Subscription-Key",
-            "3364c9dcb16e43e4968abb2e69a607d3"
-          );
-        },
-        type: "POST",
-        // Request body
-        data:
-          '{ "documents": [ { "id": "1", "text": "Hello world" }, { "id": "2", "text": "Bonjour tout le monde" }, { "id": "3", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer." }, { "id": "4", "text": ":) :( :D" } ] }'
-      })
-        .then(function (response) {
-          console.log(response);
-        })
-        .done(function (data) {
-          alert("success");
-        })
-        .fail(function () {
-          alert("error");
-        });
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-      document.addEventListener("submit", function (event) {
-        event.preventDefault();
-        let userInput = textArea.value;
-      });
-
       // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
       // // The Firebase SDK is initialized and available here!
       //
