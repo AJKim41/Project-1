@@ -112,7 +112,9 @@
                 `{ "documents": [${userData}] }`
             })
               .then(function (response) {
-                console.log(response);
+                var data = response;
+                console.log(data);
+                console.log(data.documents[0].score)
               })
               .done(function (data) {
                 alert("success");
@@ -123,12 +125,6 @@
           })
 
         });
-
-        document.addEventListener("DOMContentLoaded", function () {
-          document.addEventListener("submit", function (event) {
-            event.preventDefault();
-            let userInput = textArea.value;
-          });
 
           // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
           // // The Firebase SDK is initialized and available here!
