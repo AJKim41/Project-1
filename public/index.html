@@ -64,6 +64,11 @@
       });
 
       document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("submit", function(event) {
+          event.preventDefault();
+          let userInput = textArea.value;
+        });
+
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
         // // The Firebase SDK is initialized and available here!
         //
