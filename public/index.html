@@ -2,8 +2,8 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Welcome to Firebase Hosting</title>
 
   <!-- update the version number as needed -->
@@ -15,10 +15,14 @@
   <script defer src="/__/firebase/5.10.1/firebase-storage.js"></script>
   <!-- initialize the SDK after all desired features are loaded -->
   <script defer src="/__/firebase/init.js"></script>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/css/style.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -62,16 +66,65 @@
       </div>
   <div class="donate">
     <p>Donate to Autism Speaks</p>
-    <div class="donate-link"><a
+    <div class="donate-link">
+      <a
         href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">Donate</a>
     </div>
   </div>
+
       <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js'></script>
       <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js'></script>
       <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo.js'></script>
       <script src="js/index.js"></script>
+
+  <form>
+    <input id="language" name="language" type="hidden" value="en">
+    <input id="id" name="id" type="hidden" value="1">
+    <textarea name="text" id="text" class="userInput" type="text" cols="30" rows="10"></textarea>
+    <input type="submit">
+  </form>
+
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    $(function () {
+      var params = {
+        // Request parameters
+        showStats: "true"
+      };
+
+      $.ajax({
+        url:
+          "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment?" +
+          $.param(params),
+        beforeSend: function (xhrObj) {
+          // Request headers
+          xhrObj.setRequestHeader("Content-Type", "application/json");
+          xhrObj.setRequestHeader(
+            "Ocp-Apim-Subscription-Key",
+            "3364c9dcb16e43e4968abb2e69a607d3"
+          );
+        },
+        type: "POST",
+        // Request body
+        data:
+          '{ "documents": [ { "id": "1", "text": "Hello world" }, { "id": "2", "text": "Bonjour tout le monde" }, { "id": "3", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer." }, { "id": "4", "text": ":) :( :D" } ] }'
+      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .done(function (data) {
+          alert("success");
+        })
+        .fail(function () {
+          alert("error");
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let userInput = textArea.value;
+      });
+
       // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
       // // The Firebase SDK is initialized and available here!
       //
@@ -84,11 +137,16 @@
 
       try {
         let app = firebase.app();
-        let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-        document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        let features = ["auth", "database", "messaging", "storage"].filter(
+          feature => typeof app[feature] === "function"
+        );
+        document.getElementById(
+          "load"
+        ).innerHTML = `Firebase SDK loaded with ${features.join(", ")}`;
       } catch (e) {
         console.error(e);
-        document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        document.getElementById("load").innerHTML =
+          "Error loading the Firebase SDK, check the console.";
       }
     });
   </script>
