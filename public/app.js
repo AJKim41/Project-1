@@ -29,9 +29,10 @@ $(function() {
     })
       .then(function(response) {
         var data = response;
+        var score = Math.floor(data.documents[0].score * 100);
         console.log(data);
-        console.log(data.documents[0].score);
-        $(".sentiment_score").html(data.documents[0].score);
+        console.log(score);
+        $(".sentiment_score").html(`${score}%`);
       })
       .done(function(data) {
         alert("success");
