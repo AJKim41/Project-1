@@ -1,10 +1,10 @@
-$(function() {
+$(function () {
   var params = {
     // Request parameters
     showStats: "true"
   };
 
-  document.addEventListener("submit", function(event) {
+  document.addEventListener("submit", function (event) {
     event.preventDefault();
     var lang = document.getElementById("language").value;
     var id = document.getElementById("id").value;
@@ -15,7 +15,7 @@ $(function() {
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment?" +
         $.param(params),
-      beforeSend: function(xhrObj) {
+      beforeSend: function (xhrObj) {
         // Request headers
         xhrObj.setRequestHeader("Content-Type", "application/json");
         xhrObj.setRequestHeader(
@@ -27,16 +27,16 @@ $(function() {
       // Request body
       data: `{ "documents": [${userData}] }`
     })
-      .then(function(response) {
+      .then(function (response) {
         var data = response;
         console.log(data);
         console.log(data.documents[0].score);
         $(".sentiment_score").html(data.documents[0].score);
       })
-      .done(function(data) {
+      .done(function (data) {
         alert("success");
       })
-      .fail(function() {
+      .fail(function () {
         alert("error");
       });
   });
@@ -44,7 +44,7 @@ $(function() {
 
 // This is the key phrase API //
 
-document.addEventListener("submit", function(event) {
+document.addEventListener("submit", function (event) {
   event.preventDefault();
   var id = document.getElementById("id").value;
   var keyPhrase = document.getElementById("keyPhrases").value;
@@ -55,7 +55,15 @@ document.addEventListener("submit", function(event) {
     text: userInput
   });
   console.log(userData);
-  $(function() {
+  async function websterAW() {
+    let url = await fetch(`https://dictionaryapi.com/api/v3/references/collegiate/json/test?key=890e17a2-5dcf-4fbe-9e78-69195869c5a2`);
+    let data = await url.json();
+    console.log(data[0].shortdef);
+
+  }
+  websterAW();
+  $(function () {
+
     var params = {
       // Request parameters
       showStats: true
@@ -65,7 +73,7 @@ document.addEventListener("submit", function(event) {
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" +
         $.param(params),
-      beforeSend: function(xhrObj) {
+      beforeSend: function (xhrObj) {
         // Request headers
         xhrObj.setRequestHeader("Content-Type", "application/json");
         xhrObj.setRequestHeader(
@@ -77,19 +85,39 @@ document.addEventListener("submit", function(event) {
       // Request body
       data: `{ "documents": [${userData}] }`
     })
-      .then(function(response) {
+      .then(function (response) {
         var data = response;
         console.log(data);
         console.log(data.documents[0].keyPhrases);
         $(".keyphrase").html(data.documents[0].keyPhrases);
       })
-      .done(function(data) {
+      .done(function (data) {
         alert("success");
       })
-      .fail(function() {
+      .fail(function () {
         alert("error");
       });
   });
+
+  //-------------------------------  Dictionary API -----------------
+  /*   document.addEventListener("submit", function (event) {
+      event.preventDefault();
+   */
+  /*  var wordNeedDef = "apple";
+   var wordDefined = meta.id.value();
+   $.ajax({
+     url:
+       `https://www.dictionaryapi.com/api/v3/references/learners/json/apple?key=890e17a2-5dcf-4fbe-9e78-69195869c5a2`,
+     type: "GET"
+   }).then(function (response) {
+     var data = response;
+     console.log(data);
+   }).done(function (data) {
+     alert("success");
+   }).fail(function () {
+     alert("error");
+   })
+ }) */
 
   // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
   // // The Firebase SDK is initialized and available here!
