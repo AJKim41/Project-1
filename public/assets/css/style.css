@@ -55,6 +55,24 @@ textarea {
     border-radius: 10px;
 
 }
+.sentiment_score {
+    color: #fff;
+    font-size: 32pt;
+}
+label {
+    color: pink;
+    font-size: 32pt;
+}
+.donate-link {
+    position: fixed;
+    font-size: 24pt;
+    bottom: 20px;
+    right: 50px;
+}
+.donate-link a {
+    text-decoration: none;
+    color: #fff;
+}
 @media only screen and (max-width: 768px) {
     .demo .main-title {
         font-size: 3em;
