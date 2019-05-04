@@ -54,68 +54,54 @@
             <canvas id="demo-canvas"></canvas>
             <div class="main-title">
               <h1><span class="thin">NLP It!</span></h1>
-              <div class="input-group" id="formsubmission" style="width: 500px;">
+              <div class="input-group" id="formsubmission">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Put Your Text Here:</span>
                 </div>
                 <textarea class="form-control" aria-label="With textarea"></textarea>
+                <button type="submit" class="btn btn-dark">Submit</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-  <div class="donate">
-    <p>Donate to Autism Speaks</p>
-    <div class="donate-link">
-      <a
-        href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">Donate</a>
-    </div>
-  </div>
 
       <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js'></script>
       <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js'></script>
       <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo.js'></script>
       <script src="js/index.js"></script>
 
-  <form>
-    <input id="language" name="language" type="hidden" value="en">
-    <input id="id" name="id" type="hidden" value="1">
-    <textarea name="text" id="text" class="userInput" type="text" cols="30" rows="10"></textarea>
-    <input type="submit">
-  </form>
+      <script>
+        $(function () {
+          var params = {
+            // Request parameters
+            showStats: "true"
+          };
 
-  <script>
-    $(function () {
-      var params = {
-        // Request parameters
-        showStats: "true"
-      };
+          // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+          // // The Firebase SDK is initialized and available here!
+          //
+          // firebase.auth().onAuthStateChanged(user => { });
+          // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+          // firebase.messaging().requestPermission().then(() => { });
+          // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+          //
+          // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-      // // The Firebase SDK is initialized and available here!
-      //
-      // firebase.auth().onAuthStateChanged(user => { });
-      // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-      // firebase.messaging().requestPermission().then(() => { });
-      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-      //
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-      try {
-        let app = firebase.app();
-        let features = ["auth", "database", "messaging", "storage"].filter(
-          feature => typeof app[feature] === "function"
-        );
-        document.getElementById(
-          "load"
-        ).innerHTML = `Firebase SDK loaded with ${features.join(", ")}`;
-      } catch (e) {
-        console.error(e);
-        document.getElementById("load").innerHTML =
-          "Error loading the Firebase SDK, check the console.";
-      }
-    });
-  </script>
+          try {
+            let app = firebase.app();
+            let features = ["auth", "database", "messaging", "storage"].filter(
+              feature => typeof app[feature] === "function"
+            );
+            document.getElementById(
+              "load"
+            ).innerHTML = `Firebase SDK loaded with ${features.join(", ")}`;
+          } catch (e) {
+            console.error(e);
+            document.getElementById("load").innerHTML =
+              "Error loading the Firebase SDK, check the console.";
+          }
+        });
+      </script>
 </body>
 
 </html>
