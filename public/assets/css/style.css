@@ -1,19 +1,18 @@
+.off {
+    display:none;
+}
+
 body {
-    background: #000;
+    background-color: #000000;
+  padding: 0px;
+  margin: 0px;
 }
 
-.large-header {
-    position: relative;
-    width: 100%;
-    background: #111;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center center;
-    z-index: 1;
-}
-
-.demo .large-header {
-    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
+#gradient {
+ width: 100%;
+ height: 800px;
+ padding: 0px;
+ margin: 0px;
 }
 
 .main-title {
@@ -22,21 +21,11 @@ body {
     padding: 0;
     color: #F9F1E9;
     text-align: center;
-    top: 50%;
+    top: 160%;
     left: 50%;
     -webkit-transform: translate3d(-50%, -50%, 0);
     transform: translate3d(-50%, -50%, 0);
     width: 50%
-}
-
-.demo .main-title {
-    text-transform: uppercase;
-    font-size: 4.2em;
-    letter-spacing: 0.1em;
-}
-
-.main-title .thin {
-    font-weight: 200;
 }
 
 .form {
@@ -69,6 +58,10 @@ label {
     font-size: 32pt;
 }
 
+#results1 {
+    background: white;
+}
+
 @media only screen and (max-width: 568px) {
 
     .main-title {
@@ -90,7 +83,6 @@ label {
     }
 }
 
-
 @media only screen and (max-width:875px) and (min-width: 569px) {
 
     .main-title {
@@ -110,7 +102,6 @@ label {
         margin-right: 35%;
     }
 }
-
 
 @media only screen and (min-width: 876px) {
 

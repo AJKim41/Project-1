@@ -1,11 +1,15 @@
-$(function() {
+$(function () {
   var params = {
     // Request parameters
     showStats: "true"
   };
 
-  document.addEventListener("submit", function(event) {
+  document.addEventListener("submit", function (event) {
     event.preventDefault();
+
+    $("#formsubmission").addClass("off")
+    $("#results1").removeClass("off")
+
     var lang = document.getElementById("language").value;
     var id = document.getElementById("id").value;
     var userInput = document.querySelector("#userInput").value;
@@ -15,7 +19,7 @@ $(function() {
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment?" +
         $.param(params),
-      beforeSend: function(xhrObj) {
+      beforeSend: function (xhrObj) {
         // Request headers
         xhrObj.setRequestHeader("Content-Type", "application/json");
         xhrObj.setRequestHeader(
@@ -27,17 +31,17 @@ $(function() {
       // Request body
       data: `{ "documents": [${userData}] }`
     })
-      .then(function(response) {
+      .then(function (response) {
         var data = response;
         var score = Math.floor(data.documents[0].score * 100);
         console.log(data);
         console.log(score);
-        $(".sentiment_score").html(`${score}%`);
+        $("#per-score").html(`${score}%`);
       })
-      .done(function(data) {
-        alert("success");
+      .done(function (data) {
+        // alert("success");
       })
-      .fail(function() {
+      .fail(function () {
         alert("error");
       });
   });
@@ -45,7 +49,7 @@ $(function() {
 
 // This is the key phrase API //
 
-document.addEventListener("submit", function(event) {
+document.addEventListener("submit", function (event) {
   event.preventDefault();
   var id = document.getElementById("id").value;
   var keyPhrase = document.getElementById("keyPhrases").value;
@@ -56,7 +60,7 @@ document.addEventListener("submit", function(event) {
     text: userInput
   });
   console.log(userData);
-  $(function() {
+  $(function () {
     var params = {
       // Request parameters
       showStats: true
@@ -66,7 +70,7 @@ document.addEventListener("submit", function(event) {
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" +
         $.param(params),
-      beforeSend: function(xhrObj) {
+      beforeSend: function (xhrObj) {
         // Request headers
         xhrObj.setRequestHeader("Content-Type", "application/json");
         xhrObj.setRequestHeader(
@@ -78,16 +82,16 @@ document.addEventListener("submit", function(event) {
       // Request body
       data: `{ "documents": [${userData}] }`
     })
-      .then(function(response) {
+      .then(function (response) {
         var data = response;
         console.log(data);
         console.log(data.documents[0].keyPhrases);
-        $(".keyphrase").html(data.documents[0].keyPhrases);
+        $("#key-phrase").html(data.documents[0].keyPhrases);
       })
-      .done(function(data) {
-        alert("success");
+      .done(function (data) {
+        // alert("success");
       })
-      .fail(function() {
+      .fail(function () {
         alert("error");
       });
   });
@@ -116,4 +120,75 @@ document.addEventListener("submit", function(event) {
   //     "Error loading the Firebase SDK, check the console.";
   // }
   // // });
+
+
+  // style
+
+
+
+
+
+
+
 });
+
+var colors = new Array(
+  [62, 35, 255],
+  [60, 255, 60],
+  [255, 35, 98],
+  [45, 175, 230],
+  [255, 0, 255],
+  [255, 128, 0]);
+
+var step = 0;
+//color table indices for: 
+// current color left
+// next color left
+// current color right
+// next color right
+var colorIndices = [0, 1, 2, 3];
+
+//transition speed
+var gradientSpeed = 0.002;
+
+function updateGradient() {
+
+  if ($ === undefined) return;
+
+  var c0_0 = colors[colorIndices[0]];
+  var c0_1 = colors[colorIndices[1]];
+  var c1_0 = colors[colorIndices[2]];
+  var c1_1 = colors[colorIndices[3]];
+
+  var istep = 1 - step;
+  var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+  var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+  var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+  var color1 = "rgb(" + r1 + "," + g1 + "," + b1 + ")";
+
+  var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+  var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+  var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+  var color2 = "rgb(" + r2 + "," + g2 + "," + b2 + ")";
+
+  $('#gradient').css({
+    background: "-webkit-gradient(linear, left top, right top, from(" + color1 + "), to(" + color2 + "))"
+  }).css({
+    background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
+  });
+
+  step += gradientSpeed;
+  if (step >= 1) {
+    step %= 1;
+    colorIndices[0] = colorIndices[1];
+    colorIndices[2] = colorIndices[3];
+
+    //pick two new target color indices
+    //do not pick the same as the current one
+    colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+    colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+
+  }
+}
+
+setInterval(updateGradient, 10);
