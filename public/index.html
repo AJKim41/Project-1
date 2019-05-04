@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <link rel="stylesheet" href="./assets/css/style.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -26,6 +27,7 @@
 </head>
 
 <body>
+  <div id="gradient" />
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <a class="navbar-brand" href="#">NLP Text Advice</a>
@@ -47,104 +49,73 @@
         </ul>
       </div>
     </nav>
+
     <div class="row">
       <div class="col-sm-12">
-        <div class="content">
-          <div id="large-header" class="large-header">
-            <canvas id="demo-canvas"></canvas>
+        <canvas id="demo-canvas"></canvas>
+        <div class="main-title">
+          <h1><span class="thin">NLP It!</span></h1>
+          <div class="form" id="formsubmission">
+            <form action="POST">
+              <input id="language" name="language" type="hidden" value="en">
+              <input id="id" name="id" type="hidden" value="1">
+              <input id="keyPhrases" name="keyPhrases" type="hidden" value="">
+              <textarea id="userInput" placeholder="Enter text here..." aria-label="With textarea"></textarea>
+              <input id="submitbutton" class="our-button" type="submit">
+            </form>
+          </div>
 
-            <div class="main-title">
-              <h1><span class="thin">NLP It!</span></h1>
-              <div class="form" id="formsubmission">
-                <form action="POST">
-                  <input id="language" name="language" type="hidden" value="en">
-                  <input id="id" name="id" type="hidden" value="1">
-                  <input id="keyPhrases" name="keyPhrases" type="hidden" value="">
-                  <textarea id="userInput" placeholder="Enter text here..." aria-label="With textarea"></textarea>
-                  <input id="submitbutton" class="our-button" type="submit">
-                </form>
-              </div>
+          <div id="results1" class="off">
+            <div class="row">
+              <div class="col-sm-12">
 
-              <div id="results1" class="off">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <th scope="row"></th>
+                      <td>Score</td>
+                      <td id="per-score">%goes here</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td> </td>
+                      <td id="face-score">smiley face scale goes here</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td> Key phrases</td>
+                      <td id="key-phrase"> key phrases here</td>
+                      <td id="key-phrase-meaning">wikipedia articles here</td>
+                    </tr>
+                  </tbody>
+                </table>
 
-                <div class="row">
-                  <div class="col-sm-12">
-                    <table class="table">
-                      <tbody>
-                        <tr>
-                          <th scope="row"></th>
-                          <td>Score</td>
-                          <td>%goes here</td>
-                        </tr>
-                        <tr>
-                          <th scope="row"></th>
-                          <td> </td>
-                          <td>smiley face scale goes here</td>
-                        </tr>
-                        <tr>
-                          <th scope="row"></th>
-                          <td>Key phrases</td>
-                          <td>wikipedia articles here</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
-        </div>
 
-
-      </div>
-
-    </div>
-  </div>
-  </div>
-  </div>
-
-
-  <!-- <div id="results1" class="off">
-      <div class="row">
-        <div class="col-sm-12">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th scope="row"></th>
-                <td>Score</td>
-                <td>%goes here</td>
-              </tr>
-              <tr>
-                <th scope="row"></th>
-                <td> </td>
-                <td>smiley face scale goes here</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
-      <table class="table">
-        <tbody>
-          <tr>
-            <th scope="row"></th>
-            <td>Key phrases</td>
-            <td>wikipedia articles here</td>
-          </tr>
-          <tr>
-            <th scope="row"></th>
-            <td> </td>
-            <td>smiley face scale goes here</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
-  </div> -->
+  </div>
 
-
-
-
-
-
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <label for="sentiment">Sentiment Analysis:</label>
   <div class="sentiment_score"></div>
   <br>
@@ -155,10 +126,9 @@
 
 
 
-  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js'></script>
+  <!-- <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js'></script>
   <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js'></script>
-  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo.js'></script>
-  <!-- <script src="js/index.js"></script> -->
+  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo.js'></script> -->
 
 </body>
 
