@@ -70,20 +70,30 @@
                 <table class="table">
                   <tbody>
                     <tr>
-                      <th scope="row"></th>
-                      <td>Score</td>
-                      <td id="per-score">%goes here</td>
+                      <td rowspan="2">
+                        <h3>Score</h3>
+                        <br>
+                        <p>Scores close to 1 indicate positive sentiment, and scores close to 0 indicate negative
+                          sentiment. </p>
+                      </td>
+                      <td colspan="3" id="per-score">%goes here</td>
                     </tr>
                     <tr>
-                      <th scope="row"></th>
-                      <td> </td>
-                      <td id="face-score">smiley face scale goes here</td>
+
+                      <td colspan="3" id="face-score"><img src="./assets/images/sad (1).png" alt="sad" id="sad"> <img
+                          src="./assets/images/thinking (1).png" alt="thinking" id="thinking"> <img
+                          src="./assets/images/smile.png" alt="positive" id="positive"></td>
                     </tr>
                     <tr>
-                      <th scope="row"></th>
-                      <td> Key phrases</td>
-                      <td id="key-phrase"> key phrases here</td>
-                      <td id="key-phrase-meaning">wikipedia articles here</td>
+
+                      <td rowspan="2">
+                        <h3>Key phrases</h3>
+                        <p>This is the key talking points in the input text.</p>
+                        <br>
+                        <div id="key-phrase"> key phrases here</div>
+                      </td>
+
+                      <td colspan="3" id="key-phrase-meaning">wikipedia articles here</td>
                     </tr>
                   </tbody>
                 </table>
