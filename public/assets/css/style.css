@@ -1,6 +1,7 @@
 body {
     background: #000;
 }
+
 .large-header {
     position: relative;
     width: 100%;
@@ -37,16 +38,19 @@ body {
 .main-title .thin {
     font-weight: 200;
 }
+
 .form {
     width: 100%;
     height: 100px;
     padding-top: 20px;
 }
+
 textarea {
     float: left;
     width: 80%;
     border-radius: 10px;
 }
+
 .our-button {
     margin-left: 2.5%;
     float: left;
@@ -55,26 +59,91 @@ textarea {
     border-radius: 10px;
 
 }
+
 .sentiment_score {
     color: #fff;
     font-size: 32pt;
 }
+
 label {
     color: pink;
     font-size: 32pt;
 }
-.donate-link {
-    position: fixed;
-    font-size: 24pt;
-    bottom: 20px;
-    right: 50px;
-}
-.donate-link a {
-    text-decoration: none;
-    color: #fff;
-}
-@media only screen and (max-width: 768px) {
+
+/* @media only screen and (max-width: 768px) {
     .demo .main-title {
         font-size: 3em;
+    }
+} */
+
+@media only screen and (max-width: 568px) {
+
+    .main-title {
+        width: 80%;
+    }
+
+    #userInput {
+        width: 100%;
+        min-height: 50px;
+        max-height: 300px;
+
+    }
+
+    #submitbutton {
+        margin: 0;
+        padding: 0;
+        width: 30%;
+        margin-left: 35%;
+        margin-right: 35%;
+
+    }
+
 }
+
+
+@media only screen and (max-width:875px) and (min-width: 569px) {
+
+    .main-title {
+        width: 80%;
+    }
+
+    #userInput {
+        width: 100%;
+        min-height: 50px;
+        max-height: 300px;
+    }
+
+    #submitbutton {
+        margin: 0;
+        padding: 0;
+        width: 30%;
+        margin-left: 35%;
+        margin-right: 35%;
+
+    }
+
+}
+
+
+@media only screen and (min-width: 876px) {
+
+    /* .main-title {
+        width: 80%;
+    } */
+
+    #userInput {
+        width: 100%;
+        min-height: 50px;
+        max-height: 300px;
+    }
+
+    #submitbutton {
+        margin: 0;
+        padding: 0;
+        width: 30%;
+        margin-left: 35%;
+        margin-right: 35%;
+
+    }
+
 }
