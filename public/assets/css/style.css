@@ -1,5 +1,9 @@
+.off{
+    display:none;
+}
+
 body {
-    background: #000;
+    background: black;
 }
 
 .large-header {
@@ -22,7 +26,7 @@ body {
     padding: 0;
     color: #F9F1E9;
     text-align: center;
-    top: 50%;
+    top: 40%;
     left: 50%;
     -webkit-transform: translate3d(-50%, -50%, 0);
     transform: translate3d(-50%, -50%, 0);
@@ -67,6 +71,10 @@ textarea {
 label {
     color: pink;
     font-size: 32pt;
+}
+
+#results1 {
+    background: white;
 }
 
 @media only screen and (max-width: 568px) {

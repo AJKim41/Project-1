@@ -1,11 +1,15 @@
-$(function() {
+$(function () {
   var params = {
     // Request parameters
     showStats: "true"
   };
 
-  document.addEventListener("submit", function(event) {
+  document.addEventListener("submit", function (event) {
     event.preventDefault();
+
+    $("#formsubmission").addClass("off")
+    $("#results1").removeClass("off")
+
     var lang = document.getElementById("language").value;
     var id = document.getElementById("id").value;
     var userInput = document.querySelector("#userInput").value;
@@ -15,7 +19,7 @@ $(function() {
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment?" +
         $.param(params),
-      beforeSend: function(xhrObj) {
+      beforeSend: function (xhrObj) {
         // Request headers
         xhrObj.setRequestHeader("Content-Type", "application/json");
         xhrObj.setRequestHeader(
@@ -27,17 +31,17 @@ $(function() {
       // Request body
       data: `{ "documents": [${userData}] }`
     })
-      .then(function(response) {
+      .then(function (response) {
         var data = response;
         var score = Math.floor(data.documents[0].score * 100);
         console.log(data);
         console.log(score);
         $(".sentiment_score").html(`${score}%`);
       })
-      .done(function(data) {
+      .done(function (data) {
         alert("success");
       })
-      .fail(function() {
+      .fail(function () {
         alert("error");
       });
   });
@@ -45,7 +49,7 @@ $(function() {
 
 // This is the key phrase API //
 
-document.addEventListener("submit", function(event) {
+document.addEventListener("submit", function (event) {
   event.preventDefault();
   var id = document.getElementById("id").value;
   var keyPhrase = document.getElementById("keyPhrases").value;
@@ -56,7 +60,7 @@ document.addEventListener("submit", function(event) {
     text: userInput
   });
   console.log(userData);
-  $(function() {
+  $(function () {
     var params = {
       // Request parameters
       showStats: true
@@ -66,7 +70,7 @@ document.addEventListener("submit", function(event) {
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" +
         $.param(params),
-      beforeSend: function(xhrObj) {
+      beforeSend: function (xhrObj) {
         // Request headers
         xhrObj.setRequestHeader("Content-Type", "application/json");
         xhrObj.setRequestHeader(
@@ -78,16 +82,16 @@ document.addEventListener("submit", function(event) {
       // Request body
       data: `{ "documents": [${userData}] }`
     })
-      .then(function(response) {
+      .then(function (response) {
         var data = response;
         console.log(data);
         console.log(data.documents[0].keyPhrases);
         $(".keyphrase").html(data.documents[0].keyPhrases);
       })
-      .done(function(data) {
+      .done(function (data) {
         alert("success");
       })
-      .fail(function() {
+      .fail(function () {
         alert("error");
       });
   });
