@@ -52,7 +52,7 @@ document.addEventListener("submit", function(event) {
   var userInput = document.querySelector("#userInput").value;
   var userData = JSON.stringify({
     id: id,
-    keyPhrases: keyPhrases,
+    keyPhrases: keyPhrase,
     text: userInput
   });
   console.log(userData);
