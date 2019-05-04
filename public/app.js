@@ -36,10 +36,10 @@ $(function () {
         var score = Math.floor(data.documents[0].score * 100);
         console.log(data);
         console.log(score);
-        $(".sentiment_score").html(`${score}%`);
+        $("#per-score").html(`${score}%`);
       })
       .done(function (data) {
-        alert("success");
+        // alert("success");
       })
       .fail(function () {
         alert("error");
@@ -56,7 +56,7 @@ document.addEventListener("submit", function (event) {
   var userInput = document.querySelector("#userInput").value;
   var userData = JSON.stringify({
     id: id,
-    keyPhrases: keyPhrases,
+    keyPhrases: keyPhrase,
     text: userInput
   });
   console.log(userData);
@@ -86,10 +86,10 @@ document.addEventListener("submit", function (event) {
         var data = response;
         console.log(data);
         console.log(data.documents[0].keyPhrases);
-        $(".keyphrase").html(data.documents[0].keyPhrases);
+        $("#key-phrase").html(data.documents[0].keyPhrases);
       })
       .done(function (data) {
-        alert("success");
+        // alert("success");
       })
       .fail(function () {
         alert("error");
