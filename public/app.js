@@ -32,7 +32,7 @@ $(function() {
         var score = Math.floor(data.documents[0].score * 100);
         console.log(data);
         console.log(score);
-        $(".sentiment_score").html(score);
+        $(".sentiment_score").html(`${score}%`);
       })
       .done(function(data) {
         alert("success");
