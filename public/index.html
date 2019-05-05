@@ -21,7 +21,7 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <link rel="stylesheet" href="./assets/css/style.css">
-
+  <script> src = "./app.js"</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
@@ -30,83 +30,83 @@
 </head>
 
 <body>
-  <div id="gradient" />
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-      <a class="navbar-brand" href="#">NLP Text Advice</a>
-      <button class="navbar-toggler" class="mx-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link"
-              href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">Donate</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+  <div id="gradient">
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="#">NLP Text Advice</a>
+        <button class="navbar-toggler" class="mx-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link"
+                href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">Donate</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <canvas id="demo-canvas"></canvas>
-        <div class="main-title">
-          <h1><span class="thin">NLP It!</span></h1>
-          <div class="form" id="formsubmission">
-            <form action="POST">
-              <input id="language" name="language" type="hidden" value="en">
-              <input id="id" name="id" type="hidden" value="1">
-              <input id="keyPhrases" name="keyPhrases" type="hidden" value="">
-              <textarea id="userInput" placeholder="Enter text here..." aria-label="With textarea"></textarea>
-              <input id="submitbutton" class="our-button" type="submit">
-            </form>
-          </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <canvas id="demo-canvas"></canvas>
+          <div class="main-title">
+            <h1><span class="thin">NLP It!</span></h1>
+            <div class="form" id="formsubmission">
+              <form action="POST">
+                <input id="language" name="language" type="hidden" value="en">
+                <input id="id" name="id" type="hidden" value="1">
+                <input id="keyPhrases" name="keyPhrases" type="hidden" value="">
+                <textarea id="userInput" placeholder="Enter text here..." aria-label="With textarea"></textarea>
+                <input id="submitbutton" class="our-button" type="submit">
+              </form>
+            </div>
 
-          <div id="results1" class="off">
-            <div class="row">
-              <div class="col-sm-12">
+            <div id="results1" class="off">
+              <div class="row">
+                <div class="col-sm-12">
 
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td rowspan="2">
-                        <h3>Score</h3>
-                        <br>
-                        <p>Scores close to 1 indicate positive sentiment, and scores close to 0 indicate negative
-                          sentiment. </p>
-                      </td>
-                      <td colspan="3" id="per-score">%goes here</td>
-                    </tr>
-                    <tr>
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td rowspan="2">
+                          <h3>Score</h3>
+                          <br>
+                          <p>Scores close to 1 indicate positive sentiment, and scores close to 0 indicate negative
+                            sentiment. </p>
+                        </td>
+                        <td colspan="3" id="per-score">%goes here</td>
+                      </tr>
+                      <tr>
 
-                      <td colspan="3" id="face-score"><img src="./assets/images/sad (1).png" alt="sad" id="sad"> <img
-                          src="./assets/images/thinking (1).png" alt="thinking" id="thinking"> <img
-                          src="./assets/images/smile.png" alt="positive" id="positive"></td>
-                    </tr>
-                    <tr>
+                        <td colspan="3" id="face-score"><img src="./assets/images/sad (1).png" alt="sad" id="sad"> <img
+                            src="./assets/images/thinking (1).png" alt="thinking" id="thinking"> <img
+                            src="./assets/images/smile.png" alt="positive" id="positive"></td>
+                      </tr>
+                      <tr>
 
-                      <td rowspan="2">
-                        <h3>Key phrases</h3>
-                        <p>This is the key talking points in the input text.</p>
-                        <br>
-                        <div id="key-phrase"> key phrases here</div>
-                      </td>
+                        <td rowspan="2">
+                          <h3>Key phrases</h3>
+                          <p>This is the key talking points in the input text.</p>
+                          <br>
+                          <div id="key-phrase"> key phrases here</div>
+                        </td>
 
-                      <td colspan="3" id="key-phrase-meaning">wikipedia articles here</td>
-                    </tr>
-                  </tbody>
-                </table>
+                        <td colspan="3" id="key-phrase-meaning">wikipedia articles here</td>
+                      </tr>
+                    </tbody>
+                  </table>
 
+                </div>
               </div>
             </div>
+
           </div>
-
         </div>
-      </div>
 
+      </div>
     </div>
-  </div>
 
 
   </div>

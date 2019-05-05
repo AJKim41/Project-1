@@ -37,6 +37,7 @@ $(function () {
         console.log(data);
         console.log(score);
         $("#per-score").html(`${score}%`);
+
       })
       .done(function (data) {
         // alert("success");
@@ -60,12 +61,12 @@ document.addEventListener("submit", function (event) {
     text: userInput
   });
   console.log(userData);
+
   $(function () {
     var params = {
       // Request parameters
-      showStats: true
+      showStats: "true"
     };
-
     $.ajax({
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" +
@@ -85,16 +86,65 @@ document.addEventListener("submit", function (event) {
       .then(function (response) {
         var data = response;
         console.log(data);
-        console.log(data.documents[0].keyPhrases);
-        $("#key-phrase").html(data.documents[0].keyPhrases);
+        console.log(data.documents[0].keyPhrases[0]);
+        var keyPhrase = data.documents[0].keyPhrases[0];
+        console.log(data);
+        if (keyPhrase === undefined) {
+          $("#key-phrase").html("No Key Phrase")
+        } else {
+          $("#key-phrase").html(data.documents[0].keyPhrases[0]);
+
+          websterAW(keyPhrase);
+        }
+
       })
       .done(function (data) {
         // alert("success");
       })
+      .then(function (response) {
+        var data = response;
+
+        console.log(data.documents[0].keyPhrases);
+        $(".keyphrase").html(data.documents[0].keyPhrases);
+      })
+      .done(function (data) {
+        alert("success");
+      })
       .fail(function () {
         alert("error");
       });
+
+    console.log(keyPhrase)
+    async function websterAW(keyPhrase) {
+      let url = await fetch(`https://dictionaryapi.com/api/v3/references/collegiate/json/${keyPhrase}?key=890e17a2-5dcf-4fbe-9e78-69195869c5a2`);
+      let data = await url.json();
+      console.log(data);
+      $("#key-phrase").html(`${keyPhrase}`);
+
+      $("#key-phrase-meaning").html(`${data[0].shortdef}`);
+
+    };
   });
+
+  //-------------------------------  Dictionary API -----------------
+  /*   document.addEventListener("submit", function (event) {
+      event.preventDefault();
+   */
+  /*  var wordNeedDef = "apple";
+   var wordDefined = meta.id.value();
+   $.ajax({
+     url:
+       `https://www.dictionaryapi.com/api/v3/references/learners/json/apple?key=890e17a2-5dcf-4fbe-9e78-69195869c5a2`,
+     type: "GET"
+   }).then(function (response) {
+     var data = response;
+     console.log(data);
+   }).done(function (data) {
+     alert("success");
+   }).fail(function () {
+     alert("error");
+   })
+ }) */
 
   // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
   // // The Firebase SDK is initialized and available here!
@@ -103,8 +153,6 @@ document.addEventListener("submit", function (event) {
   // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
   // firebase.messaging().requestPermission().then(() => { });
   // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-
-  // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
   // try {
   //   let app = firebase.app();
