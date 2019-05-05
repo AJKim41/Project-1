@@ -61,18 +61,12 @@ document.addEventListener("submit", function (event) {
     text: userInput
   });
   console.log(userData);
-  async function websterAW() {
-    let url = await fetch(`https://dictionaryapi.com/api/v3/references/collegiate/json/rock?key=890e17a2-5dcf-4fbe-9e78-69195869c5a2`);
-    let data = await url.json();
-    let keyword =
-      console.log(data[0].shortdef);
-    $("#key-phrase-meaning").html(`${data[0].shortdef}`);
-
-  }
-  websterAW();
 
   $(function () {
-
+    var params = {
+      // Request parameters
+      showStats: "true"
+    };
     $.ajax({
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" +
@@ -92,16 +86,24 @@ document.addEventListener("submit", function (event) {
       .then(function (response) {
         var data = response;
         console.log(data);
-        console.log(data.documents[0].keyPhrases);
+        console.log(data.documents[0].keyPhrases[0]);
+        var keyPhrase = data.documents[0].keyPhrases[0];
+        console.log(data);
+        if (keyPhrase === undefined) {
+          $("#key-phrase").html("No Key Phrase")
+        } else {
+          $("#key-phrase").html(data.documents[0].keyPhrases[0]);
 
-        $("#key-phrase").html(data.documents[0].keyPhrases);
+          websterAW(keyPhrase);
+        }
+
       })
       .done(function (data) {
         // alert("success");
       })
       .then(function (response) {
         var data = response;
-        console.log(data);
+
         console.log(data.documents[0].keyPhrases);
         $(".keyphrase").html(data.documents[0].keyPhrases);
       })
@@ -111,6 +113,17 @@ document.addEventListener("submit", function (event) {
       .fail(function () {
         alert("error");
       });
+
+    console.log(keyPhrase)
+    async function websterAW(keyPhrase) {
+      let url = await fetch(`https://dictionaryapi.com/api/v3/references/collegiate/json/${keyPhrase}?key=890e17a2-5dcf-4fbe-9e78-69195869c5a2`);
+      let data = await url.json();
+      console.log(data);
+      $("#key-phrase").html(`${keyPhrase}`);
+
+      $("#key-phrase-meaning").html(`${data[0].shortdef}`);
+
+    };
   });
 
   //-------------------------------  Dictionary API -----------------
