@@ -15,6 +15,7 @@ $(function () {
     var userInput = document.querySelector("#userInput").value;
     var userData = JSON.stringify({ language: lang, id: id, text: userInput });
     console.log(userData);
+    function()
     $.ajax({
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment?" +
@@ -124,6 +125,29 @@ document.addEventListener("submit", function (event) {
       $("#key-phrase-meaning").html(`${data[0].shortdef}`);
 
     };
+    // Choose A Face
+    let faceA = document.getElementById("happyFace");
+    let faceB = document.getElementById("thinkingFace");
+    let faceC = document.getElementById("sadFace");
+    let wordScore = document.getElementById("keyPhrase").value;
+
+
+    let chosenFace = function () {
+      if (wordScore >= 80) {
+        chosenFace = faceA;
+      } else if (wordScore <= 60) {
+        chosenFace = faceC;
+      } else {
+        chosenFace = faceB;
+      }
+    };
+
+    let displayFace = function () {
+      document.getElementById("chosenFace").innerHTML($(img.val));
+      console.log(chosenFace);
+    }
+    chooseFace();
+    displayFace();
   });
 
   //-------------------------------  Dictionary API -----------------
