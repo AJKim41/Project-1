@@ -161,6 +161,9 @@ textarea[type=text]:focus {
     box-shadow: 0 0 25px rgb(228, 133, 181);
 
 } 
+#last-definition {
+    color: #fff;
+}
 /*============================TABLE==============================================*/
 table {
     font-size: 18pt;
