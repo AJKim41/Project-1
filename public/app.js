@@ -6,16 +6,17 @@ $(function () {
 
   document.addEventListener("submit", function (event) {
     event.preventDefault();
-
+    //-------------------------------  Sentiment API -----------------
     $("#formsubmission").addClass("off")
     $("#results1").removeClass("off")
 
     var lang = document.getElementById("language").value;
     var id = document.getElementById("id").value;
     var userInput = document.querySelector("#userInput").value;
+    var keyPhrase = document.getElementById("keyPhrases").value;
     var userData = JSON.stringify({ language: lang, id: id, text: userInput });
     console.log(userData);
-    function()
+
     $.ajax({
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment?" +
@@ -38,7 +39,14 @@ $(function () {
         console.log(data);
         console.log(score);
         $("#per-score").html(`${score}%`);
-
+        $(".face").removeClass("active");
+        if (score >= 66) {
+          $(".happy-frame").addClass("active");
+        } else if (score >= 33 && score <= 65) {
+          $(".thinking-frame").addClass("active");
+        } else {
+          $(".sad-frame").addClass("active");
+        }
       })
       .done(function (data) {
         // alert("success");
@@ -46,28 +54,15 @@ $(function () {
       .fail(function () {
         alert("error");
       });
-  });
-});
 
-// This is the key phrase API //
+    //-------------------------------  KeyPhrase API -----------------
+    var userData = JSON.stringify({
+      id: id,
+      keyPhrases: keyPhrase,
+      text: userInput
+    });
+    console.log(userData);
 
-document.addEventListener("submit", function (event) {
-  event.preventDefault();
-  var id = document.getElementById("id").value;
-  var keyPhrase = document.getElementById("keyPhrases").value;
-  var userInput = document.querySelector("#userInput").value;
-  var userData = JSON.stringify({
-    id: id,
-    keyPhrases: keyPhrase,
-    text: userInput
-  });
-  console.log(userData);
-
-  $(function () {
-    var params = {
-      // Request parameters
-      showStats: "true"
-    };
     $.ajax({
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" +
@@ -114,62 +109,48 @@ document.addEventListener("submit", function (event) {
       .fail(function () {
         alert("error");
       });
-
+    $('#userInput').val("");
+    $('#searchForm').removeClass("col-md-12");
+    $('#searchForm').addClass("col-md-6")
+    $("#information").attr('style', 'display:block');
     console.log(keyPhrase)
-    async function websterAW(keyPhrase) {
-      let url = await fetch(`https://dictionaryapi.com/api/v3/references/collegiate/json/${keyPhrase}?key=890e17a2-5dcf-4fbe-9e78-69195869c5a2`);
-      let data = await url.json();
-      console.log(data);
-      $("#key-phrase").html(`${keyPhrase}`);
-
-      $("#key-phrase-meaning").html(`${data[0].shortdef}`);
-
-    };
-    // Choose A Face
-    let faceA = document.getElementById("happyFace");
-    let faceB = document.getElementById("thinkingFace");
-    let faceC = document.getElementById("sadFace");
-    let wordScore = document.getElementById("keyPhrase").value;
-
-
-    let chosenFace = function () {
-      if (wordScore >= 80) {
-        chosenFace = faceA;
-      } else if (wordScore <= 60) {
-        chosenFace = faceC;
-      } else {
-        chosenFace = faceB;
-      }
-    };
-
-    let displayFace = function () {
-      document.getElementById("chosenFace").innerHTML($(img.val));
-      console.log(chosenFace);
-    }
-    chooseFace();
-    displayFace();
   });
 
-  //-------------------------------  Dictionary API -----------------
-  /*   document.addEventListener("submit", function (event) {
-      event.preventDefault();
-   */
-  /*  var wordNeedDef = "apple";
-   var wordDefined = meta.id.value();
-   $.ajax({
-     url:
-       `https://www.dictionaryapi.com/api/v3/references/learners/json/apple?key=890e17a2-5dcf-4fbe-9e78-69195869c5a2`,
-     type: "GET"
-   }).then(function (response) {
-     var data = response;
-     console.log(data);
-   }).done(function (data) {
-     alert("success");
-   }).fail(function () {
-     alert("error");
-   })
- }) */
+  async function websterAW(keyPhrase) {
+    let url = await fetch(`https://dictionaryapi.com/api/v3/references/collegiate/json/${keyPhrase}?key=890e17a2-5dcf-4fbe-9e78-69195869c5a2`);
+    let data = await url.json();
+    console.log(data);
+    $("#key-phrase").html(`${keyPhrase}`);
 
+    $("#key-phrase-meaning").html(`${data[0].shortdef}`);
+
+  };
+
+  /* Choose A Face
+  let faceA = document.getElementById("happyFace");
+  let faceB = document.getElementById("thinkingFace");
+  let faceC = document.getElementById("sadFace");
+  let wordScore = document.getElementById("keyS").value;
+
+
+  let chosenFace = function () {
+    if (wordScore >= 80) {
+      chosenFace = faceA;
+    } else if (wordScore <= 60) {
+      chosenFace = faceC;
+    } else {
+      chosenFace = faceB;
+    }
+  };
+
+  let displayFace = function () {
+    document.getElementById("chosenFace").innerHTML($(img.val));
+    console.log(chosenFace);
+  }
+  chooseFace();
+  displayFace();
+});
+*/
   // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
   // // The Firebase SDK is initialized and available here!
   //
@@ -205,12 +186,13 @@ document.addEventListener("submit", function (event) {
 });
 
 var colors = new Array(
-  [62, 35, 255],
-  [60, 255, 60],
-  [255, 35, 98],
-  [45, 175, 230],
-  [255, 0, 255],
-  [255, 128, 0]);
+  [228, 133, 181],
+  [129, 43, 155],
+  [58, 119, 233],
+  [228, 133, 181],
+  [129, 43, 155],
+  [58, 119, 233]
+);
 
 var step = 0;
 //color table indices for: 

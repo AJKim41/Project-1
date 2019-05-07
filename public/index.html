@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Welcome to Firebase Hosting</title>
+  <title>What They Say</title>
 
   <!-- update the version number as needed -->
   <script defer src="/__/firebase/5.10.1/firebase-app.js"></script>
@@ -15,107 +15,246 @@
   <script defer src="/__/firebase/5.10.1/firebase-storage.js"></script>
   <!-- initialize the SDK after all desired features are loaded -->
   <script defer src="/__/firebase/init.js"></script>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <script> src = "./app.js"</script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-  <script src="./app.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css?family=Cabin+Condensed:600|Gloria+Hallelujah|Orbitron|Patrick+Hand|Pontano+Sans|Rock+Salt|Special+Elite"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+
+
 </head>
 
 <body>
-  <div id="gradient">
-    <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <a class="navbar-brand" href="#">NLP Text Advice</a>
-        <button class="navbar-toggler" class="mx-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link"
-                href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">Donate</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
 
-      <div class="row">
-        <div class="col-sm-12">
-          <canvas id="demo-canvas"></canvas>
-          <div class="main-title">
-            <h1><span class="thin">NLP It!</span></h1>
-            <div class="form" id="formsubmission">
-              <form action="POST">
-                <input id="language" name="language" type="hidden" value="en">
-                <input id="id" name="id" type="hidden" value="1">
-                <input id="keyPhrases" name="keyPhrases" type="hidden" value="">
-                <textarea id="userInput" placeholder="Enter text here..." aria-label="With textarea"></textarea>
-                <input id="submitbutton" class="our-button" type="submit">
-              </form>
-            </div>
-
-            <div id="results1" class="off">
-              <div class="row">
-                <div class="col-sm-12">
-
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td rowspan="2">
-                          <h3>Score</h3>
-                          <br>
-                          <p>Scores close to 1 indicate positive sentiment, and scores close to 0 indicate negative
-                            sentiment. </p>
-                        </td>
-                        <td colspan="3" id="per-score">%goes here</td>
-                      </tr>
-                      <tr>
-
-                        <td colspan="3" id="face-score"><img src="./assets/images/sad (1).png" alt="sad" id="sad"> <img
-                            src="./assets/images/thinking (1).png" alt="thinking" id="thinking"> <img
-                            src="./assets/images/smile.png" alt="positive" id="positive"></td>
-                      </tr>
-                      <tr>
-
-                        <td rowspan="2">
-                          <h3>Key phrases</h3>
-                          <p>This is the key talking points in the input text.</p>
-                          <br>
-                          <div id="key-phrase"> key phrases here</div>
-                        </td>
-
-                        <td colspan="3" id="key-phrase-meaning">wikipedia articles here</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                </div>
-              </div>
-            </div>
-
+  <div class="container app-container">
+    <div class="row title">
+      <div class="col-md-12">
+        <h1>What'd They Say!?</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-12 col-sm-12" id="searchForm">
+        <div class="row">
+          <div class="col-md-8 col-12 col-sm-12 col-lg-8 bye">
+            <form action="">
+              <textarea max-char="5120" type="text" id="user-input" class="user-text-input" autofocus="true"
+                placeholder="Paste or type a word to learn more!"></textarea>
+          </div>
+          <div class="col-md-4 col-12 col-sm-12 col-lg-4 bye">
+            <button class="btn">Define</button>
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-md-8 col-12 col-sm-12 col-lg-8">
+            <input id="language" type="hidden" value="en">
+            <input id="id" type="hidden" value="1">
+            <input id="keyPhrases" name="keyPhrases" type="hidden" value="">
+            <textarea max-char="5120" type="text" id="userInput" class="user-text-input" autofocus="true"
+              required="true" placeholder="Paste or type your message here!"></textarea>
+          </div>
+          <div class="col-md-4 col-12 col-sm-12 col-lg-4">
+            <input type="submit" id="submit" class="btn" value="Analyze Message">
+          </div>
+        </div>
       </div>
+      <div class="col-12 col-md-6 col-sm-12" id="information" style="display: none">
+        <div class="faces">
+          <ul>
+            <li id="happyFace" class="happy">
+              <img class="happy-frame " src="./assets/images/positive.png">
+            </li>
+            <li id="thinkingFace" class="thinking">
+              <img class="thinking-frame" src="./assets/images/thinking.png">
+
+            </li>
+            <li id="sadFace" class="sad">
+              <img class="sad-frame" src="./assets/images/sad.png">
+
+            </li>
+          </ul>
+          <table>
+            <tbody>
+              <tr>
+                <th>Score</th>
+
+                <td id="per-score"></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>Scores close to 100 indicate positive sentiment, and scores close to 0 indicate negative
+                  sentiment.</td>
+              </tr>
+              <tr>
+                <th>Key Phrase</th>
+                <td id="key-phrase"></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>The phrase that was chosen to anylyze your message.</td>
+              </tr>
+              <tr>
+                <th>Definition</th>
+                <td id="key-phrase-meaning"></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>The definition of the Key Phrase</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--       <div class="col-12 col-md-6 col-sm-12" id="information" style="display: none">
+        <div class="faces">
+          <table class="faces-table">
+            <tbody>
+              <tr>
+                <td>
+                  <ul>
+                    <li id="happyFace" class="happy">
+                      <img class="happy-frame " src="./assets/images/positive.png">
+                    </li>
+                    <li id="thinkingFace" class="thinking">
+                      <img class="thinking-frame" src="./assets/images/thinking.png">
+
+                    </li>
+                    <li id="sadFace" class="sad">
+                      <img class="sad-frame" src="./assets/images/sad.png">
+
+                    </li>
+                  </ul>
+                </td>
+              </tr> -->
+      <!--             <tr>
+              <td id="chosenFace" value="">
+              </td>
+            </tr> -->
+
+      <!--             <tr>
+              <td class="keyword-label" id="keyPhrase-keyTerm">Keyword: </td>
+              <td class="keyword-word" id="keyPhrase-output" class="keyPhrase"></td>
+            </tr>
+            <tr class="definition">
+              <td class="keyword-label" id="defineKey">Definition :</td>
+              <td class="definition-array definition" id="defineKey-output" class="defineKey"></td>
+            </tr> -->
+      <!--  <tr>
+                <td rowspan="2">
+                  <h3>Score</h3>
+                  <br>
+                  <p>Scores close to 1 indicate positive sentiment, and scores close to 0 indicate negative
+                    sentiment. </p>
+                </td>
+                <td colspan="3" id="per-score">%goes here</td>
+              </tr>
+
+              <tr>
+
+                <td rowspan="2">
+                  <h3>Key phrases</h3>
+                  <p>This is the key talking points in the input text.</p>
+                  <br>
+                  <div id="key-phrase"> key phrases here</div>
+                </td>
+
+                <td colspan="3" id="key-phrase-meaning">wikipedia articles here</td>
+              </tr> -->
+      </tbody>
+      </table>
     </div>
-
-
+  </div>
+  </div>
+  </div>
+  <div class="aSpeaks">
+    <a
+      href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">
+      <h3>#autismSpeaks</h3>
+      <p>Click Here to Donate!</p>
+      <img class="aSpeaks-logo" src="./assets/images/autism-speaks-logo-trial2.png" alt="Autism Speaks">
+    </a>
   </div>
 
+  <!--     <div class="title">
+        <h1>What They Say?!?</h1>
+    </div>
+    <div class="container">
+        <div class="top">
+        </div>
+        <div class="mid">
+            <div class="main-header">
+                <div class="stage" style="width: 120px; height: 120px;">
+                    <div class="cubespinner">
+                        <div class="face1">What</div>
+                        <div class="face2">they</div>
+                        <div class="face3">say?</div>
+                        <div class="face4">What</div>
+                        <div class="face5">they</div>
+                        <div class="face6">say?!</div>
+                    </div>
+                </div>
+                <div class="input-area">
+                    <input type="text" id="user-input" class="user-text-input" autofocus="true"
+                        placeholder="Paste your message here!">
+                        <input type="submit" id="text-submit" class="btn" value="Analyze Message">
+                </div>
+            </div>
+        </div>
+        <div class="bot">
+            <table class="faces-table">
+                <tr>
+                    <td>
+                        <div class="faces">
+                            <ul>
+                                <li id="happyFace" class="happy">
+                                    <img class="happy-frame" src="./assets/positive.png">
+                                </li>
+                                <li id="thinkingFace" class="thinking">
+                                    <img class="thinking-frame" src="./assets/thinking.png">
+                                </li>
+                                <li id="sadFace" class="sad">
+                                    <img class="sad-frame" src="./assets/sad.png">
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table class="keyword">
+                <tr>
+                    <td>Key : </td>
+                    <td> "you suck JACKASS"</td>
+                </tr>
+                <tr class="definition">
+                    <td>Definition:</td>
+                    <td>And the answer is...</td>
+                </tr>
+            </table>-->
+  <!--    <div class="donate">
+                <p>Donate to Autism Speaks</p>
+                <div class="donate-link">
+                    <a
+                        href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">Donate</a>
+                </div>
+            </div>
 
-
-  <!-- <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js'></script>
-  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js'></script>
-  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo.js'></script> -->
+-->
+  <!-- <div class="circle">
+                        <p> : )</p>
+                    </div>
+                    <div class="circle-eh">
+                        <p> : /</p>
+                    </div>
+                    <div class="circle-mad">
+                        <p>:|</p>
+                    </div>-->
+  </div>
+  </div>
+  <script src="./app.js"></script>
 
 </body>
 
