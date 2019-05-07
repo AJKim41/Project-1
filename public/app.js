@@ -39,7 +39,10 @@ $(function () {
         console.log(data);
         console.log(score);
         $("#per-score").html(`${score}%`);
-        $(".face").removeClass("active");
+
+        $(".happy-frame").removeClass("active");
+        $(".thinking-frame").removeClass("active");
+        $(".sad-frame").removeClass("active");
         if (score >= 66) {
           $(".happy-frame").addClass("active");
         } else if (score >= 33 && score <= 65) {
