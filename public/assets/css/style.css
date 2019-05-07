@@ -1,120 +1,350 @@
-.off {
-    display:none;
+/*============    What They Say CSS */
+
+/*      Fonts
+
+font-family: 'Cabin Condensed', sans-serif;
+font-family: 'Gloria Hallelujah', cursive;
+font-family: 'Orbitron', sans-serif;
+font-family: 'Patrick Hand', cursive;
+font-family: 'Special Elite', cursive;
+font-family: 'Pontano Sans', sans-serif;
+font-family: 'Rock Salt', cursive;
+
+        Colors
+
+Blue rgb(59, 122, 238)
+Purple rgb(116, 21, 145)
+Pink lightpink
+=================*/
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
 }
 
 body {
-    background-color: #000000;
-  padding: 0px;
-  margin: 0px;
+    background: purple;
+    background-image: linear-gradient(to top right, lightpink, rgb(116, 21, 145), rgb(59, 122, 238), rgb(132, 204, 252));
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+    font-family: 'Pontano Sans', sans-serif;
+    overflow: inherit;
+    padding-top: 30px;
+}
+/*==========aSpeaks===================*/
+.aSpeaks {
+    transform: rotate(35deg);
+    position: fixed;
+    bottom: -100px;
+    left: -100px;
+}
+.aSpeaks h3 {
+    color: #fff;
+    font-family: 'Rock Salt', cursive;
+    font-size: 50px;
+    text-shadow: 0 0 8px rgb(116, 21, 145);
+    text-decoration: none;
+}
+.aSpeaks a {
+    text-shadow: 0 0 8px #fff;
+}
+.aSpeaks:hover {
+    text-shadow: 0 0 18px rgb(116, 21, 145);
+    font-size: 50px;
+}
+.aSpeaks a:hover {
+    text-decoration: none;
+    text-shadow: 0 0 18px #fff;
 }
 
-#gradient {
- width: 100%;
- height: 800px;
- padding: 0px;
- margin: 0px;
-}
 
-.main-title {
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    color: #F9F1E9;
-    text-align: center;
-    top: 160%;
-    left: 50%;
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    transform: translate3d(-50%, -50%, 0);
-    width: 50%
-}
-
-.form {
+/*=============================*/
+.definition-array {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16pt;
+    line-height: 16px;
     width: 100%;
-    height: 100px;
+
+}
+/*==========Drop Down===================*/
+fieldset {
+    border-radius: 8px;
+}
+select {
+    background-image: linear-gradient(to bottom left, rgb(228, 133, 181), rgb(129, 43, 155), rgb(58, 119, 233));
+    margin-top: 20px;
+    padding: 10px;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    text-align: center;
+    outline: none;
+}
+select:active {
+    background-image: linear-gradient(to bottom left, rgb(228, 133, 181), rgb(129, 43, 155), rgb(58, 119, 233));
+}
+option {
+    background: purple;
+    outline: none;
+}
+
+
+
+
+.container {
+    margin-top: 20px;
+    width: 90%;
+    background-image: linear-gradient(to top right, rgb(25, 25, 46), rgb(63, 79, 131));
+    border-radius: 10px;
     padding-top: 20px;
 }
-
-textarea {
-    float: left;
-    width: 80%;
-    border-radius: 10px;
+.title {
+    width: 100%;
+    margin: 0;
 }
-
-.our-button {
-    margin-left: 2.5%;
-    float: left;
-    width: 15%;
-    height: 54px;
-    border-radius: 10px;
-}
-
-.sentiment_score {
+.title h1{
+    font-size: 2.5em;
+    text-align: center;
     color: #fff;
-    font-size: 32pt;
+    width: 100%;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+input {
+    width: 100%;
+    margin: 0px;
+}
+.input-area {
+}
+.user-text-input {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+textarea[type=text] {
+    height: 40px;
+    outline: none;
+    border: solid 2px rgb(129, 43, 155);
+    resize: none;
+    background-image: linear-gradient(to bottom left, rgb(228, 133, 181), #fff, rgb(58, 119, 233));
+
+}
+textarea[type=text]:focus {
+    height: 60px;
+    -webkit-transition: height 1.2s ease-in-out;
+    transition: height 1.2s ease-in-out;
+
+}
+.message {
+    height: 300px;
 }
 
-label {
-    color: pink;
-    font-size: 32pt;
+.btn {
+        background-image: linear-gradient(to bottom left, rgb(228, 133, 181), rgb(129, 43, 155), rgb(58, 119, 233));
+        border-radius: 8px;
+        border: none;
+        color: #fff;
+        margin-top: 15px;
+        white-space: normal;
+}
+ .btn:hover {
+    color: rgb(228, 133, 181);
+    background-image: linear-gradient(to bottom left, rgb(58, 119, 233), rgba(20, 18, 39, 0.596), rgb(58, 119, 233));
+    box-shadow: 0 0 25px rgb(228, 133, 181);
+
+} 
+/*============================TABLE==============================================*/
+table {
+    font-size: 18pt;
+}
+th {
+    color: yellow;
+    padding: 10px;
+}
+td {
+    padding: 10px;
+}
+td:last-child {
+    font-size: 12pt;
+}
+/*===============SMILEY FACES=======================*/
+.faces img {
+    width: 60px;
+    height: 60px;
+    border: solid 2px yellow;
+}
+.faces {
+    background: transparent;
+    color: #fff;
+    width: 100%;
+  }
+.faces-table td {
+    padding-bottom: 20px;
+    height: 150%;
+
+}
+  .faces-table img {
+    background: transparent;
+    
+    box-shadow: 0 0 40px rgb(228, 133, 181), inset 0 0 20px rgb(228, 133, 181);
+    border-radius: 50%;
+    opacity: 0.5;
+    padding: 5px;
+  }
+  .happy-frame {
+    border: solid 3px rgba(0, 128, 0, 0.350);
+    opacity: 0.5;
+    border-radius: 50%;
+  }
+  .thinking-frame {
+    border: solid 3px rgba(0, 0, 255, 0.350);
+    opacity: 0.5;
+    border-radius: 50%;
+  }
+  .sad-frame {
+    border: solid 3px rgba(255, 0, 0, 0.350);
+    opacity: 0.5;
+    border-radius: 50%;
+  }
+ /*  .faces img:hover {
+    opacity: 0.7;
+    width: 200px;
+    height:200px;
+    animation-name: floating;
+    animation-duration: 2400ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    padding: 5px;
+    cursor: help;
+    position: absolute;
+    z-index: 1000;
+  } */
+  .faces ul {
+      width: 100%;
+      text-align: center;
+  }
+  .faces li {
+      list-style: none;
+      border-radius: 50%;
+      display: inline-block;
+  }
+  @keyframes floating{
+  from { transform: translate(0, 0px); }
+  65% { transform: translate(0, 15px); }
+  to { transform: translate(0, -0px); }
+  }
+ /*  .happy-frame:hover {
+    border: solid 3px green;
+    box-shadow: 0 0 40px green, inset 0 0 20px green;
+    opacity: 0.9;
+  }
+  .thinking-frame:hover {
+    border: solid 3px blue;
+    box-shadow: 0 0 40px blue, inset 0 0 20px blue;
+    opacity: 0.9;
+
+  }
+  .sad-frame:hover {
+    border: solid 3px red;
+    box-shadow: 0 0 40px red, inset 0 0 20px red;
+    opacity: 0.9;
+  }
+  .happy:hover {
+    box-shadow: none;
+    border-radius: 50%;
+    background: transparent;
+  }
+  .thinking:hover {
+    box-shadow: none;
+    border-radius: 50%;
+    background: transparent;
+  }
+  .sad:hover {
+    box-shadow: none;
+    border-radius: 50%;
+    background: transparent;
+  } */
+  
+  
+  
+  /*================API RETURN INFO======================*/
+  
+  .keyword {
+
+    color: #fff;
+    font-size: 22pt;
+    font-family: 'Gloria Hallelujah', cursive;  
+  }
+  .keyword td {
+    padding: 8px;
+  }
+
+  .keyword tr:hover {
+    color: rgb(190, 72, 35);
+    text-shadow: 0 0 6.5px red;
+  }
+  .keyword-label {
+      color: yellow;
+      text-shadow: 0 0 4px #fff;
+  }
+  .definition {
+    font-family: 'Gloria Hallelujah', cursive;  
+    font-size: 18px;
+    padding-left: 8px;
+    padding-top: 0;
+    margin-bottom: 0;
+  }
+
+  .active {
+    opacity: 1 !important;
+    animation-name: floating;
+    animation-duration: 2400ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    padding: 5px;
+    border: solid 3px yellow;
+    box-shadow: 0 0 40px yellow, inset 0 0 20px yellow;
+} 
+.bye {
+    display: none;
+}
+/*================aSpeaks Logo======================*/
+.aSpeaks {
+    position: fixed;
+    bottom: -240px;
+    left: -60px;
+}
+.aSpeaks h3 {
+    font-size: 16pt;
+    font-family: 'Rock Salt', cursive;
+}
+.aSpeaks p {
+    text-align: center;
+}
+/*===============TABLET=======================*/
+@media only screen and (max-width: 660px) {
+    .aSpeaks {
+        width: 50%;
+        height: 50%;
+    }
+    .aSpeaks h3 {
+        font-size: 18pt;
+    }
+    .aSpeaks img {
+        width: 50%;
+    }
 }
 
-#results1 {
-    background: white;
-}
+/*===============DESKTOP=======================*/
 
-@media only screen and (max-width: 568px) {
 
-    .main-title {
-        width: 80%;
-    }
-
-    #userInput {
-        width: 100%;
-        min-height: 50px;
-        max-height: 300px;
-    }
-
-    #submitbutton {
-        margin-top: 20px;
-        /* padding: 0; */
-        width: 30%;
-        margin-left: 35%;
-        margin-right: 35%;
-    }
-}
-
-@media only screen and (max-width:875px) and (min-width: 569px) {
-
-    .main-title {
-        width: 80%;
-    }
-
-    #userInput {
-        width: 100%;
-        min-height: 50px;
-        max-height: 300px;
-    }
-
-    #submitbutton {
-        margin-top: 20px;
-        width: 30%;
-        margin-left: 35%;
-        margin-right: 35%;
-    }
-}
-
-@media only screen and (min-width: 876px) {
-
-    #userInput {
-        width: 100%;
-        min-height: 50px;
-        max-height: 300px;
-    }
-
-    #submitbutton {
-        margin-top: 20px;
-        width: 30%;
-        margin-left: 35%;
-        margin-right: 35%;
-    }
-}
+/*======================================*/
+/*======================================*/
+/*======================================*/
+/*======================================*/
+/*======================================*/
+/*======================================*/
