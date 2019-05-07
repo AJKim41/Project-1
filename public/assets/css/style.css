@@ -39,6 +39,7 @@ body {
     position: fixed;
     bottom: -100px;
     left: -100px;
+    display: none;
 }
 .aSpeaks h3 {
     color: #fff;
@@ -150,6 +151,7 @@ textarea[type=text]:focus {
         color: #fff;
         margin-top: 15px;
         white-space: normal;
+        margin-bottom: 25px;
 }
  .btn:hover {
     color: rgb(228, 133, 181);
@@ -160,6 +162,7 @@ textarea[type=text]:focus {
 /*============================TABLE==============================================*/
 table {
     font-size: 18pt;
+    margin-bottom: 25px;
 }
 th {
     color: yellow;
@@ -330,6 +333,7 @@ td:last-child {
     .aSpeaks {
         width: 50%;
         height: 50%;
+        display: block;
     }
     .aSpeaks h3 {
         font-size: 18pt;
