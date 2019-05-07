@@ -83,6 +83,8 @@ select {
     outline: none;
     text-align: center;
     outline: none;
+    margin-bottom: 20px;
+    margin-left: 20px
 }
 select:active {
     background-image: linear-gradient(to bottom left, rgb(228, 133, 181), rgb(129, 43, 155), rgb(58, 119, 233));
