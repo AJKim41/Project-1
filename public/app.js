@@ -49,10 +49,10 @@ $(function () {
         }
       })
       .done(function (data) {
-        // alert("success");
+        console.log("success");
       })
       .fail(function () {
-        alert("error");
+        console.log("error");
       });
 
     //-------------------------------  KeyPhrase API -----------------
@@ -104,10 +104,10 @@ $(function () {
         $(".keyphrase").html(data.documents[0].keyPhrases);
       })
       .done(function (data) {
-        alert("success");
+        console.log("success");
       })
       .fail(function () {
-        alert("error");
+        console.log("error");
       });
     $('#userInput').val("");
     $('#searchForm').removeClass("col-md-12");
