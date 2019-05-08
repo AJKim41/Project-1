@@ -70,6 +70,8 @@ select {
     outline: none;
     text-align: center;
     outline: none;
+    margin-bottom: 20px;
+    margin-left: 20px
 }
 
 select:active {
@@ -151,7 +153,13 @@ textarea[type=text]:focus {
     background-image: linear-gradient(to bottom left, rgb(58, 119, 233), rgba(20, 18, 39, 0.596), rgb(58, 119, 233));
     box-shadow: 0 0 25px rgb(228, 133, 181);
 } 
+<<<<<<< HEAD
 
+=======
+#last-definition {
+    color: #fff;
+}
+>>>>>>> e6b8ff3bc64bb45545a379eab03df64bc0c67f53
 /*============================TABLE==============================================*/
 table {
     font-size: 18pt;
