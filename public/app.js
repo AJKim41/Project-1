@@ -6,6 +6,7 @@ $(function () {
 
   document.addEventListener("submit", function (event) {
     event.preventDefault();
+
     //-------------------------------  Sentiment API -----------------
     $("#formsubmission").addClass("off")
     $("#results1").removeClass("off")
@@ -117,6 +118,9 @@ $(function () {
     $('#searchForm').addClass("col-md-6")
     $("#information").attr('style', 'display:block');
     console.log(keyPhrase)
+
+    $("#last-definition").html(`${userInput}`);
+    console.log(lastDefinition);
   });
 
   async function websterAW(keyPhrase) {
@@ -126,7 +130,6 @@ $(function () {
     $("#key-phrase").html(`${keyPhrase}`);
 
     $("#key-phrase-meaning").html(`${data[0].shortdef}`);
-
   };
 
   /* Choose A Face
@@ -135,7 +138,7 @@ $(function () {
   let faceC = document.getElementById("sadFace");
   let wordScore = document.getElementById("keyS").value;
 
-
+  
   let chosenFace = function () {
     if (wordScore >= 80) {
       chosenFace = faceA;
