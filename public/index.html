@@ -5,7 +5,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>What They Say</title>
-
   <!-- update the version number as needed -->
   <script defer src="/__/firebase/5.10.1/firebase-app.js"></script>
   <!-- include only the Firebase features as you need -->
@@ -17,19 +16,14 @@
   <script defer src="/__/firebase/init.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link
     href="https://fonts.googleapis.com/css?family=Cabin+Condensed:600|Gloria+Hallelujah|Orbitron|Patrick+Hand|Pontano+Sans|Rock+Salt|Special+Elite"
     rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
-
-
-
 </head>
 
 <body>
-
   <div class="container app-container">
     <div class="row title">
       <div class="col-md-12">
@@ -48,7 +42,6 @@
             <button class="btn">Define</button>
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-8 col-12 col-sm-12 col-lg-8">
             <input id="language" type="hidden" value="en">
@@ -60,10 +53,16 @@
           <div class="col-md-4 col-12 col-sm-12 col-lg-4">
             <input type="submit" id="submit" class="btn" value="Analyze Message">
           </div>
+          <div class="col-mid-12">
+            <select name="Choose A language" id="Language">
+              <option id="english" value="en">English</option>
+              <option id="spanish" value="spa">Spanish</option>
+              <option id="french" value="fr">French</option>
+            </select>
+          </div>
         </div>
         <div class="row">
           <div id="last-definition" class="col-md-12">
-
           </div>
         </div>
       </div>
@@ -75,24 +74,21 @@
             </li>
             <li id="thinkingFace" class="thinking">
               <img class="thinking-frame" src="./assets/images/thinking.png">
-
             </li>
             <li id="sadFace" class="sad">
               <img class="sad-frame" src="./assets/images/sad.png">
-
             </li>
           </ul>
           <table>
             <tbody>
               <tr>
                 <th>Score</th>
-
                 <td id="per-score"></td>
               </tr>
               <tr>
                 <th></th>
-                <td>Scores close to 100 indicate positive sentiment, and scores close to 0 indicate negative
-                  sentiment.</td>
+                <td>Scores close to 100 indicate positive sentiment, and scores close to 0 indicate negative sentiment.
+                </td>
               </tr>
               <tr>
                 <th>Key Phrase</th>
@@ -114,162 +110,11 @@
           </table>
         </div>
       </div>
-      <!--       <div class="col-12 col-md-6 col-sm-12" id="information" style="display: none">
-        <div class="faces">
-          <table class="faces-table">
-            <tbody>
-              <tr>
-                <td>
-                  <ul>
-                    <li id="happyFace" class="happy">
-                      <img class="happy-frame " src="./assets/images/positive.png">
-                    </li>
-                    <li id="thinkingFace" class="thinking">
-                      <img class="thinking-frame" src="./assets/images/thinking.png">
-
-                    </li>
-                    <li id="sadFace" class="sad">
-                      <img class="sad-frame" src="./assets/images/sad.png">
-
-                    </li>
-                  </ul>
-                </td>
-              </tr> -->
-      <!--             <tr>
-              <td id="chosenFace" value="">
-              </td>
-            </tr> -->
-
-      <!--             <tr>
-              <td class="keyword-label" id="keyPhrase-keyTerm">Keyword: </td>
-              <td class="keyword-word" id="keyPhrase-output" class="keyPhrase"></td>
-            </tr>
-            <tr class="definition">
-              <td class="keyword-label" id="defineKey">Definition :</td>
-              <td class="definition-array definition" id="defineKey-output" class="defineKey"></td>
-            </tr> -->
-      <!--  <tr>
-                <td rowspan="2">
-                  <h3>Score</h3>
-                  <br>
-                  <p>Scores close to 1 indicate positive sentiment, and scores close to 0 indicate negative
-                    sentiment. </p>
-                </td>
-                <td colspan="3" id="per-score">%goes here</td>
-              </tr>
-
-              <tr>
-
-                <td rowspan="2">
-                  <h3>Key phrases</h3>
-                  <p>This is the key talking points in the input text.</p>
-                  <br>
-                  <div id="key-phrase"> key phrases here</div>
-                </td>
-
-                <td colspan="3" id="key-phrase-meaning">wikipedia articles here</td>
-              </tr> -->
       </tbody>
       </table>
     </div>
-    <div class="row">
-      <div class="col-mid-12">
-        <select name="Choose A language" id="Language">
-          <option id="english" value="en">English</option>
-          <option id="spanish" value="spa">Spanish</option>
-          <option id="french" value="fr">French</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  </div>
-  </div>
-  <!-- <div class="aSpeaks">
-    <a
-      href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">
-      <h3>#autismSpeaks</h3>
-      <p>Click Here to Donate!</p>
-      <img class="aSpeaks-logo" src="./assets/images/autism-speaks-logo-trial2.png" alt="Autism Speaks">
-    </a>
-  </div>-->
-
-  <!--     <div class="title">
-        <h1>What They Say?!?</h1>
-    </div>
-    <div class="container">
-        <div class="top">
-        </div>
-        <div class="mid">
-            <div class="main-header">
-                <div class="stage" style="width: 120px; height: 120px;">
-                    <div class="cubespinner">
-                        <div class="face1">What</div>
-                        <div class="face2">they</div>
-                        <div class="face3">say?</div>
-                        <div class="face4">What</div>
-                        <div class="face5">they</div>
-                        <div class="face6">say?!</div>
-                    </div>
-                </div>
-                <div class="input-area">
-                    <input type="text" id="user-input" class="user-text-input" autofocus="true"
-                        placeholder="Paste your message here!">
-                        <input type="submit" id="text-submit" class="btn" value="Analyze Message">
-                </div>
-            </div>
-        </div>
-        <div class="bot">
-            <table class="faces-table">
-                <tr>
-                    <td>
-                        <div class="faces">
-                            <ul>
-                                <li id="happyFace" class="happy">
-                                    <img class="happy-frame" src="./assets/positive.png">
-                                </li>
-                                <li id="thinkingFace" class="thinking">
-                                    <img class="thinking-frame" src="./assets/thinking.png">
-                                </li>
-                                <li id="sadFace" class="sad">
-                                    <img class="sad-frame" src="./assets/sad.png">
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <table class="keyword">
-                <tr>
-                    <td>Key : </td>
-                    <td> "you suck JACKASS"</td>
-                </tr>
-                <tr class="definition">
-                    <td>Definition:</td>
-                    <td>And the answer is...</td>
-                </tr>
-            </table>-->
-  <!--    <div class="donate">
-                <p>Donate to Autism Speaks</p>
-                <div class="donate-link">
-                    <a
-                        href="https://act.autismspeaks.org/site/Donation2?idb=1360370770&4141.donation=form1&DONATION_LEVEL_ID_SELECTED=1&df_id=4141&mfc_pref=T&idb=[[S76:idb]]">Donate</a>
-                </div>
-            </div>
-
--->
-  <!-- <div class="circle">
-                        <p> : )</p>
-                    </div>
-                    <div class="circle-eh">
-                        <p> : /</p>
-                    </div>
-                    <div class="circle-mad">
-                        <p>:|</p>
-                    </div>-->
-  </div>
   </div>
   <script src="./app.js"></script>
-
 </body>
 
 </html>
