@@ -1,14 +1,14 @@
-$(function () {
+$(function() {
   var params = {
     // Request parameters
     showStats: "true"
   };
 
-  document.addEventListener("submit", function (event) {
+  document.addEventListener("submit", function(event) {
     event.preventDefault();
     //-------------------------------  Sentiment API -----------------
-    $("#formsubmission").addClass("off")
-    $("#results1").removeClass("off")
+    $("#formsubmission").addClass("off");
+    $("#results1").removeClass("off");
 
     var lang = document.getElementById("language").value;
     var id = document.getElementById("id").value;
@@ -21,7 +21,7 @@ $(function () {
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment?" +
         $.param(params),
-      beforeSend: function (xhrObj) {
+      beforeSend: function(xhrObj) {
         // Request headers
         xhrObj.setRequestHeader("Content-Type", "application/json");
         xhrObj.setRequestHeader(
@@ -33,13 +33,15 @@ $(function () {
       // Request body
       data: `{ "documents": [${userData}] }`
     })
-      .then(function (response) {
+      .then(function(response) {
         var data = response;
         var score = Math.floor(data.documents[0].score * 100);
         console.log(data);
         console.log(score);
         $("#per-score").html(`${score}%`);
-        $(".face").removeClass("active");
+        $(".happy-frame").removeClass("active");
+        $(".thinking-frame").removeClass("active");
+        $(".sad-frame").removeClass("active");
         if (score >= 66) {
           $(".happy-frame").addClass("active");
         } else if (score >= 33 && score <= 65) {
@@ -48,10 +50,10 @@ $(function () {
           $(".sad-frame").addClass("active");
         }
       })
-      .done(function (data) {
+      .done(function(data) {
         console.log("success");
       })
-      .fail(function () {
+      .fail(function() {
         console.log("error");
       });
 
@@ -67,7 +69,7 @@ $(function () {
       url:
         "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" +
         $.param(params),
-      beforeSend: function (xhrObj) {
+      beforeSend: function(xhrObj) {
         // Request headers
         xhrObj.setRequestHeader("Content-Type", "application/json");
         xhrObj.setRequestHeader(
@@ -79,52 +81,52 @@ $(function () {
       // Request body
       data: `{ "documents": [${userData}] }`
     })
-      .then(function (response) {
+      .then(function(response) {
         var data = response;
         console.log(data);
         console.log(data.documents[0].keyPhrases[0]);
         var keyPhrase = data.documents[0].keyPhrases[0];
         console.log(data);
         if (keyPhrase === undefined) {
-          $("#key-phrase").html("No Key Phrase")
+          $("#key-phrase").html("No Key Phrase");
         } else {
           $("#key-phrase").html(data.documents[0].keyPhrases[0]);
 
           websterAW(keyPhrase);
         }
-
       })
-      .done(function (data) {
+      .done(function(data) {
         // alert("success");
       })
-      .then(function (response) {
+      .then(function(response) {
         var data = response;
 
         console.log(data.documents[0].keyPhrases);
         $(".keyphrase").html(data.documents[0].keyPhrases);
       })
-      .done(function (data) {
+      .done(function(data) {
         console.log("success");
       })
-      .fail(function () {
+      .fail(function() {
         console.log("error");
       });
-    $('#userInput').val("");
-    $('#searchForm').removeClass("col-md-12");
-    $('#searchForm').addClass("col-md-6")
-    $("#information").attr('style', 'display:block');
-    console.log(keyPhrase)
+    $("#userInput").val("");
+    $("#searchForm").removeClass("col-md-12");
+    $("#searchForm").addClass("col-md-6");
+    $("#information").attr("style", "display:block");
+    console.log(keyPhrase);
   });
 
   async function websterAW(keyPhrase) {
-    let url = await fetch(`https://dictionaryapi.com/api/v3/references/collegiate/json/${keyPhrase}?key=890e17a2-5dcf-4fbe-9e78-69195869c5a2`);
+    let url = await fetch(
+      `https://dictionaryapi.com/api/v3/references/collegiate/json/${keyPhrase}?key=890e17a2-5dcf-4fbe-9e78-69195869c5a2`
+    );
     let data = await url.json();
     console.log(data);
     $("#key-phrase").html(`${keyPhrase}`);
 
     $("#key-phrase-meaning").html(`${data[0].shortdef}`);
-
-  };
+  }
 
   /* Choose A Face
   let faceA = document.getElementById("happyFace");
@@ -174,15 +176,7 @@ $(function () {
   // }
   // // });
 
-
   // style
-
-
-
-
-
-
-
 });
 
 var colors = new Array(
@@ -195,7 +189,7 @@ var colors = new Array(
 );
 
 var step = 0;
-//color table indices for: 
+//color table indices for:
 // current color left
 // next color left
 // current color right
@@ -206,7 +200,6 @@ var colorIndices = [0, 1, 2, 3];
 var gradientSpeed = 0.002;
 
 function updateGradient() {
-
   if ($ === undefined) return;
 
   var c0_0 = colors[colorIndices[0]];
@@ -225,11 +218,19 @@ function updateGradient() {
   var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
   var color2 = "rgb(" + r2 + "," + g2 + "," + b2 + ")";
 
-  $('#gradient').css({
-    background: "-webkit-gradient(linear, left top, right top, from(" + color1 + "), to(" + color2 + "))"
-  }).css({
-    background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
-  });
+  $("#gradient")
+    .css({
+      background:
+        "-webkit-gradient(linear, left top, right top, from(" +
+        color1 +
+        "), to(" +
+        color2 +
+        "))"
+    })
+    .css({
+      background:
+        "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
+    });
 
   step += gradientSpeed;
   if (step >= 1) {
@@ -239,9 +240,12 @@ function updateGradient() {
 
     //pick two new target color indices
     //do not pick the same as the current one
-    colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
-    colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
-
+    colorIndices[1] =
+      (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) %
+      colors.length;
+    colorIndices[3] =
+      (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) %
+      colors.length;
   }
 }
 
