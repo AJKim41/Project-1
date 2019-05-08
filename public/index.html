@@ -32,35 +32,27 @@
     </div>
     <div class="row">
       <div class="col-12 col-md-12 col-sm-12" id="searchForm">
-        <div class="row">
-          <div class="col-md-8 col-12 col-sm-12 col-lg-8 bye">
-            <form action="">
-              <textarea max-char="5120" type="text" id="user-input" class="user-text-input" autofocus="true"
-                placeholder="Paste or type a word to learn more!"></textarea>
+        <form action="POST">
+          <div class="row">
+            <div class="col-md-8 col-12 col-sm-12 col-lg-8">
+              <input id="language" type="hidden" value="en">
+              <input id="id" type="hidden" value="1">
+              <input id="keyPhrases" name="keyPhrases" type="hidden" value="">
+              <textarea max-char="5120" type="text" id="userInput" class="user-text-input" autofocus="true"
+                required="true" placeholder="Paste or type your message here!"></textarea>
+            </div>
+            <div class="col-md-4 col-12 col-sm-12 col-lg-4">
+              <input type="submit" id="submit" class="btn" value="Analyze Message">
+            </div>
+            <div class="col-mid-12">
+              <select name="Choose A language" id="Language">
+                <option id="english" value="en">English</option>
+                <option id="spanish" value="spa">Spanish</option>
+                <option id="french" value="fr">French</option>
+              </select>
+            </div>
           </div>
-          <div class="col-md-4 col-12 col-sm-12 col-lg-4 bye">
-            <button class="btn">Define</button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8 col-12 col-sm-12 col-lg-8">
-            <input id="language" type="hidden" value="en">
-            <input id="id" type="hidden" value="1">
-            <input id="keyPhrases" name="keyPhrases" type="hidden" value="">
-            <textarea max-char="5120" type="text" id="userInput" class="user-text-input" autofocus="true"
-              required="true" placeholder="Paste or type your message here!"></textarea>
-          </div>
-          <div class="col-md-4 col-12 col-sm-12 col-lg-4">
-            <input type="submit" id="submit" class="btn" value="Analyze Message">
-          </div>
-          <div class="col-mid-12">
-            <select name="Choose A language" id="Language">
-              <option id="english" value="en">English</option>
-              <option id="spanish" value="spa">Spanish</option>
-              <option id="french" value="fr">French</option>
-            </select>
-          </div>
-        </div>
+        </form>
         <div class="row">
           <div id="last-definition" class="col-md-12">
           </div>
