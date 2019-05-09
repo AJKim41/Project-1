@@ -129,13 +129,40 @@ $(function () {
 
   };
 
+  //-------------------------------  Detect Language API -----------------
+  $(function () {
+    var params = {
+      // Request parameters
+    };
+
+    $.ajax({
+      url: "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/languages" + $.param(params),
+      beforeSend: function (xhrObj) {
+        // Request headers
+        xhrObj.setRequestHeader("Content-Type", "application/json");
+        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key",
+          "d3af22ed2fef4839b006fc7afcbcdbf2");
+      },
+      type: "POST",
+      // Request body
+      data: `{ "documents": [ { "id": "1", "text": "Hello world" }, { "id": "2", "text": "Bonjour tout le monde" }, { "id": "3", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer." }, { "id": "4", "text": ":) :( :D" } ] }`
+    })
+      .done(function (data) {
+        alert("success");
+        console.log(data);
+
+      })
+      .fail(function () {
+        alert("error");
+      });
+  });
   /* Choose A Face
   let faceA = document.getElementById("happyFace");
   let faceB = document.getElementById("thinkingFace");
   let faceC = document.getElementById("sadFace");
   let wordScore = document.getElementById("keyS").value;
-
-
+  
+  
   let chosenFace = function () {
     if (wordScore >= 80) {
       chosenFace = faceA;
@@ -145,15 +172,15 @@ $(function () {
       chosenFace = faceB;
     }
   };
-
+  
   let displayFace = function () {
     document.getElementById("chosenFace").innerHTML($(img.val));
     console.log(chosenFace);
   }
   chooseFace();
   displayFace();
-});
-*/
+  });
+  */
   // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
   // // The Firebase SDK is initialized and available here!
   //
@@ -186,66 +213,67 @@ $(function () {
 
 
 
-});
 
-var colors = new Array(
-  [228, 133, 181],
-  [129, 43, 155],
-  [58, 119, 233],
-  [228, 133, 181],
-  [129, 43, 155],
-  [58, 119, 233]
-);
 
-var step = 0;
-//color table indices for: 
-// current color left
-// next color left
-// current color right
-// next color right
-var colorIndices = [0, 1, 2, 3];
+  var colors = new Array(
+    [228, 133, 181],
+    [129, 43, 155],
+    [58, 119, 233],
+    [228, 133, 181],
+    [129, 43, 155],
+    [58, 119, 233]
+  );
 
-//transition speed
-var gradientSpeed = 0.002;
+  var step = 0;
+  //color table indices for: 
+  // current color left
+  // next color left
+  // current color right
+  // next color right
+  var colorIndices = [0, 1, 2, 3];
 
-function updateGradient() {
+  //transition speed
+  var gradientSpeed = 0.002;
 
-  if ($ === undefined) return;
+  function updateGradient() {
 
-  var c0_0 = colors[colorIndices[0]];
-  var c0_1 = colors[colorIndices[1]];
-  var c1_0 = colors[colorIndices[2]];
-  var c1_1 = colors[colorIndices[3]];
+    if ($ === undefined) return;
 
-  var istep = 1 - step;
-  var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
-  var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
-  var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
-  var color1 = "rgb(" + r1 + "," + g1 + "," + b1 + ")";
+    var c0_0 = colors[colorIndices[0]];
+    var c0_1 = colors[colorIndices[1]];
+    var c1_0 = colors[colorIndices[2]];
+    var c1_1 = colors[colorIndices[3]];
 
-  var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
-  var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
-  var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
-  var color2 = "rgb(" + r2 + "," + g2 + "," + b2 + ")";
+    var istep = 1 - step;
+    var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+    var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+    var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+    var color1 = "rgb(" + r1 + "," + g1 + "," + b1 + ")";
 
-  $('#gradient').css({
-    background: "-webkit-gradient(linear, left top, right top, from(" + color1 + "), to(" + color2 + "))"
-  }).css({
-    background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
-  });
+    var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+    var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+    var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+    var color2 = "rgb(" + r2 + "," + g2 + "," + b2 + ")";
 
-  step += gradientSpeed;
-  if (step >= 1) {
-    step %= 1;
-    colorIndices[0] = colorIndices[1];
-    colorIndices[2] = colorIndices[3];
+    $('#gradient').css({
+      background: "-webkit-gradient(linear, left top, right top, from(" + color1 + "), to(" + color2 + "))"
+    }).css({
+      background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
+    });
 
-    //pick two new target color indices
-    //do not pick the same as the current one
-    colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
-    colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+    step += gradientSpeed;
+    if (step >= 1) {
+      step %= 1;
+      colorIndices[0] = colorIndices[1];
+      colorIndices[2] = colorIndices[3];
 
+      //pick two new target color indices
+      //do not pick the same as the current one
+      colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+      colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+
+    }
   }
-}
 
-setInterval(updateGradient, 10);
+  setInterval(updateGradient, 10);
+})
