@@ -38,6 +38,7 @@ $(function() {
         var score = Math.floor(data.documents[0].score * 100);
         console.log(data);
         console.log(score);
+
         $("#per-score").html(`${score}%`);
 
         $(".happy-frame").removeClass("active");
@@ -50,6 +51,35 @@ $(function() {
         } else {
           $(".sad-frame").addClass("active");
         }
+      })
+      .done(function(data) {
+        console.log("success");
+      })
+      .fail(function() {
+        console.log("error");
+      });
+
+    //-------------------------------  Entities API -----------------
+    var userData = JSON.stringify({ id: id, language: lang, text: userInput });
+    $.ajax({
+      url:
+        "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/entities?" +
+        $.param(params),
+      beforeSend: function(xhrObj) {
+        // Request headers
+        xhrObj.setRequestHeader("Content-Type", "application/json");
+        xhrObj.setRequestHeader(
+          "Ocp-Apim-Subscription-Key",
+          "3364c9dcb16e43e4968abb2e69a607d3"
+        );
+      },
+      type: "POST",
+      // Request body
+      data: `{ "documents": [${userData}] }`
+    })
+      .then(function(response) {
+        var data = response;
+        console.log(data);
       })
       .done(function(data) {
         console.log("success");
@@ -88,6 +118,7 @@ $(function() {
         console.log(data.documents[0].keyPhrases[0]);
         var keyPhrase = data.documents[0].keyPhrases[0];
         console.log(data);
+
         if (keyPhrase === undefined) {
           $("#key-phrase").html("No Key Phrase");
         } else {
@@ -111,6 +142,7 @@ $(function() {
       .fail(function() {
         console.log("error");
       });
+    $("#last-definition").html(`<h3>"${userInput}"</h3>`);
     $("#userInput").val("");
     $("#searchForm").removeClass("col-md-12");
     $("#searchForm").addClass("col-md-6");
@@ -127,5 +159,37 @@ $(function() {
     $("#key-phrase").html(`${keyPhrase}`);
 
     $("#key-phrase-meaning").html(`${data[0].shortdef}`);
+  }
+
+  // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+  // // The Firebase SDK is initialized and available here!
+  //
+  firebase.auth().onAuthStateChanged(user => {});
+  firebase
+    .database()
+    .ref("/path/to/ref")
+    .on("value", snapshot => {});
+  firebase
+    .messaging()
+    .requestPermission()
+    .then(() => {});
+  firebase
+    .storage()
+    .ref("/path/to/ref")
+    .getDownloadURL()
+    .then(() => {});
+
+  try {
+    let app = firebase.app();
+    let features = ["auth", "database", "messaging", "storage"].filter(
+      feature => typeof app[feature] === "function"
+    );
+    document.getElementById(
+      "load"
+    ).innerHTML = `Firebase SDK loaded with ${features.join(", ")}`;
+  } catch (e) {
+    console.error(e);
+    document.getElementById("load").innerHTML =
+      "Error loading the Firebase SDK, check the console.";
   }
 });
