@@ -39,6 +39,7 @@ $(function() {
         console.log(data);
         console.log(score);
 
+        $("#last-definition").html(`<h3>"${userInput}"</h3>`);
         $("#per-score").html(`${score}%`);
 
         $(".happy-frame").removeClass("active");
@@ -80,6 +81,21 @@ $(function() {
       .then(function(response) {
         var data = response;
         console.log(data);
+        if (data.documents[0].entities.length > 0) {
+          var entityName = data.documents[0].entities[0].name;
+          var entityUrl = data.documents[0].entities[0].wikipediaUrl;
+          console.log(entityName);
+          console.log(entityUrl);
+          setTimeout(
+            $(`#last-definition:contains("${entityName}")`)
+              .html()
+              .replace(
+                `${entityName}`,
+                `<a href="${entityUrl}">${entityName}</a>`
+              ),
+            2000
+          );
+        }
       })
       .done(function(data) {
         console.log("success");
@@ -121,9 +137,9 @@ $(function() {
 
         if (keyPhrase === undefined) {
           $("#key-phrase").html("No Key Phrase");
+          $("#key-phrase-meaning").html("");
         } else {
           $("#key-phrase").html(data.documents[0].keyPhrases[0]);
-
           websterAW(keyPhrase);
         }
       })
@@ -142,7 +158,6 @@ $(function() {
       .fail(function() {
         console.log("error");
       });
-    $("#last-definition").html(`<h3>"${userInput}"</h3>`);
     $("#userInput").val("");
     $("#searchForm").removeClass("col-md-12");
     $("#searchForm").addClass("col-md-6");
