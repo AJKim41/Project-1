@@ -104,6 +104,13 @@ option {
     font-family: 'Gloria Hallelujah', cursive;
 }
 
+h5{
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
 input {
     width: 100%;
     margin: 0px;
@@ -307,6 +314,9 @@ td:last-child {
     text-align: center;
 }
 
+/* #player{
+    visibility: hidden;
+} */
 
 /*===============MOBILE=======================*/
 

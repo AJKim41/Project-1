@@ -148,14 +148,15 @@ $(function () {
       data: `{ "documents": [ { "id": "1", "text": "Hello world" }, { "id": "2", "text": "Bonjour tout le monde" }, { "id": "3", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer." }, { "id": "4", "text": ":) :( :D" } ] }`
     })
       .done(function (data) {
-        alert("success");
+        // alert("success");
         console.log(data);
 
       })
       .fail(function () {
-        alert("error");
+        // alert("error");
       });
   });
+
   /* Choose A Face
   let faceA = document.getElementById("happyFace");
   let faceB = document.getElementById("thinkingFace");
