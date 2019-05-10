@@ -1,5 +1,5 @@
-
-html, body {
+html,
+body {
     margin: 0px;
     padding: 0px;
     height: 100%;
@@ -12,7 +12,10 @@ body {
     background-size: cover;
     height: auto;
     font-family: 'Pontano Sans', sans-serif;
-    overflow: inherit;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 /*==========aSpeaks===================*/
@@ -84,11 +87,8 @@ option {
 }
 
 .container {
-    margin-top: 2%;
-    width: 90%;
     background-image: linear-gradient(to top right, rgb(25, 25, 46), rgb(63, 79, 131));
-    border-radius: 2%;
-    padding-top: 2%;
+    border-radius: 15px;
 }
 
 .title {
@@ -96,7 +96,7 @@ option {
     margin: 0;
 }
 
-.title h1{
+.title h1 {
     font-size: 2.5em;
     text-align: center;
     color: #fff;
@@ -104,7 +104,7 @@ option {
     font-family: 'Gloria Hallelujah', cursive;
 }
 
-h5{
+h5 {
     text-align: center;
     color: #fff;
     width: 100%;
@@ -116,8 +116,7 @@ input {
     margin: 0px;
 }
 
-.input-area {
-}
+.input-area {}
 
 .user-text-input {
     width: 100%;
@@ -146,27 +145,21 @@ textarea[type=text]:focus {
 }
 
 .btn {
-        background-image: linear-gradient(to bottom left, rgb(228, 133, 181), rgb(129, 43, 155), rgb(58, 119, 233));
-        border-radius: 8px;
-        border: none;
-        color: #fff;
-        margin-top: 15px;
-        white-space: normal;
-        margin-bottom: 25px;
+    background-image: linear-gradient(to bottom left, rgb(228, 133, 181), rgb(129, 43, 155), rgb(58, 119, 233));
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    margin-top: 15px;
+    white-space: normal;
+    margin-bottom: 25px;
 }
 
- .btn:hover {
+.btn:hover {
     color: rgb(228, 133, 181);
     background-image: linear-gradient(to bottom left, rgb(58, 119, 233), rgba(20, 18, 39, 0.596), rgb(58, 119, 233));
     box-shadow: 0 0 25px rgb(228, 133, 181);
-} 
-<<<<<<< HEAD
-
-=======
-#last-definition {
-    color: #fff;
 }
->>>>>>> e6b8ff3bc64bb45545a379eab03df64bc0c67f53
+
 /*============================TABLE==============================================*/
 table {
     font-size: 18pt;
@@ -212,7 +205,7 @@ td:last-child {
 
 .faces-table img {
     background: transparent;
-    
+
     box-shadow: 0 0 40px rgb(228, 133, 181), inset 0 0 20px rgb(228, 133, 181);
     border-radius: 50%;
     opacity: 0.5;
@@ -238,28 +231,36 @@ td:last-child {
 }
 
 .faces ul {
-      width: 100%;
-      text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 .faces li {
-      list-style: none;
-      border-radius: 50%;
-      display: inline-block;
+    list-style: none;
+    border-radius: 50%;
+    display: inline-block;
 }
 
-  @keyframes floating{
-  from { transform: translate(0, 0px); }
-  65% { transform: translate(0, 15px); }
-  to { transform: translate(0, -0px); }
-  }
-  
-  /*================API RETURN INFO======================*/
+@keyframes floating {
+    from {
+        transform: translate(0, 0px);
+    }
+
+    65% {
+        transform: translate(0, 15px);
+    }
+
+    to {
+        transform: translate(0, -0px);
+    }
+}
+
+/*================API RETURN INFO======================*/
 .keyword {
 
     color: #fff;
     font-size: 22pt;
-    font-family: 'Gloria Hallelujah', cursive;  
+    font-family: 'Gloria Hallelujah', cursive;
 }
 
 .keyword td {
@@ -272,17 +273,17 @@ td:last-child {
 }
 
 .keyword-label {
-      color: yellow;
-      text-shadow: 0 0 4px #fff;
+    color: yellow;
+    text-shadow: 0 0 4px #fff;
 }
 
 .definition {
-    font-family: 'Gloria Hallelujah', cursive;  
+    font-family: 'Gloria Hallelujah', cursive;
     font-size: 18px;
     padding-left: 8px;
     padding-top: 0;
     margin-bottom: 0;
-  }
+}
 
 .active {
     opacity: 1 !important;
@@ -293,7 +294,8 @@ td:last-child {
     padding: 5px;
     border: solid 3px yellow;
     box-shadow: 0 0 40px yellow, inset 0 0 20px yellow;
-} 
+}
+
 .bye {
     display: none;
 }
