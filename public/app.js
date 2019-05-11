@@ -76,20 +76,49 @@ $(function() {
     })
       .then(function(response) {
         var data = response;
-        for (var i = 0; data.documents[0].entities.length > i; i++) {
-          var entityName = data.documents[0].entities[i].name;
-          var entityUrl = data.documents[0].entities[i].wikipediaUrl;
-          console.log(entityName);
-          console.log(entityUrl);
-          var userInputArray = userInput.split(" ");
-          userInputArray.map(input => {
-            if (input === entityName) {
-              var updatedArrayItem = `<a href="${entityUrl}" target="_blank">${entityName}</a>`;
+        var userInputArray = userInput.split(" ");
+        var i = 0;
+        var j = 0;
+        console.log(data);
+        userInputArray.map(input => {
+          if (data.documents[0].entities.length > j) {
+            var entityNames = data.documents[0].entities
+              .map(({ name }) => name)
+              .join(" ")
+              .split(" ");
+            var entityUrl = data.documents[0].entities[j].wikipediaUrl;
+            console.log(input);
+            console.log(entityNames);
+            console.log(entityUrl);
+
+            if (
+              entityNames.includes(input) &&
+              entityNames.includes(userInputArray[i + 1])
+            ) {
+              var updatedArrayItem = `<a href="${entityUrl}" target="_blank">${
+                entityNames[entityNames.indexOf(input)]
+              } ${entityNames[entityNames.indexOf(userInputArray[i + 1])]}</a>`;
               userInputArray.splice(i, 1, updatedArrayItem);
-              return updatedArrayItem;
+              userInputArray.splice(i + 1, 1, "");
+              console.log("condition 3");
+              console.log(i);
+              console.log(updatedArrayItem);
+              j++;
+            } else if (entityNames.includes(input)) {
+              var updatedArrayItem = `<a href="${entityUrl}" target="_blank">${
+                entityNames[entityNames.indexOf(input)]
+              }</a>`;
+              userInputArray.splice(i, 1, updatedArrayItem);
+              console.log(" condition 2");
+              console.log(i);
+              console.log(input);
+              console.log(userInputArray[i + 1]);
+              console.log(entityNames[0]);
+              j++;
             }
-          });
-        }
+          }
+          i++;
+        });
         $("#last-definition").html(
           `<h3 style="color:#fff;">"${userInputArray.join(" ")}"</h3>`
         );
