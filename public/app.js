@@ -76,51 +76,19 @@ $(function() {
     })
       .then(function(response) {
         var data = response;
-        var userInputArray = userInput.split(" ");
-        var i = 0;
-        var j = 0;
-        console.log(data);
-        userInputArray.map(input => {
-          if (data.documents[0].entities.length > j) {
-            var entityNames = data.documents[0].entities
-              .map(({ name }) => name)
-              .join(" ")
-              .split(" ");
-            var entityUrl = data.documents[0].entities[j].wikipediaUrl;
-            console.log(input);
-            console.log(entityNames);
-            console.log(entityUrl);
 
-            if (
-              entityNames.includes(input) &&
-              entityNames.includes(userInputArray[i + 1])
-            ) {
-              var updatedArrayItem = `<a href="${entityUrl}" target="_blank">${
-                entityNames[entityNames.indexOf(input)]
-              } ${entityNames[entityNames.indexOf(userInputArray[i + 1])]}</a>`;
-              userInputArray.splice(i, 1, updatedArrayItem);
-              userInputArray.splice(i + 1, 1, "");
-              console.log("condition 3");
-              console.log(i);
-              console.log(updatedArrayItem);
-              j++;
-            } else if (entityNames.includes(input)) {
-              var updatedArrayItem = `<a href="${entityUrl}" target="_blank">${
-                entityNames[entityNames.indexOf(input)]
-              }</a>`;
-              userInputArray.splice(i, 1, updatedArrayItem);
-              console.log(" condition 2");
-              console.log(i);
-              console.log(input);
-              console.log(userInputArray[i + 1]);
-              console.log(entityNames[0]);
-              j++;
-            }
-          }
-          i++;
+        var entities = data.documents[0].entities;
+        let updatedInput = userInput;
+        entities.map(({ name, wikipediaUrl }) => {
+          updatedInput = updatedInput.replace(
+            name,
+            `<a href="${wikipediaUrl}" target="_blank">${name}</a>`
+          );
         });
+        console.log(entities);
+        console.log(`updatedInput: `, updatedInput);
         $("#last-definition").html(
-          `<h3 style="color:#fff;">"${userInputArray.join(" ")}"</h3>`
+          `<h3 style="color:#fff;">"${updatedInput}"</h3>`
         );
         $("#userInput").val("");
       })
